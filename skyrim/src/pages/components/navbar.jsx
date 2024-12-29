@@ -27,7 +27,7 @@ function Navbar() {
       <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col">
         {/* Navbar */}
-        <div className="navbar bg-base-300 w-full h-24 text-lg fixed top-0 z-50">
+        <div className="navbar bg-base-300 bg-opacity-75 w-full h-24 text-lg fixed top-0 z-50">
           <div className="flex-none lg:hidden">
             <label
               htmlFor="my-drawer-3"
