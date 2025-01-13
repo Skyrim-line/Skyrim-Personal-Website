@@ -1,53 +1,46 @@
 import Navbar from "./components/navbar";
-import Skyrim from "../../public/skyrim.jpg";
+import Skyrim from "../../public/homepage.jpg";
+import GitHubIcon from '@mui/icons-material/GitHub';
+import { FaGithub } from "react-icons/fa";
+
 
 function Home() {
   return (
     <div className="bg-base-300">
       <Navbar />
-      <main>
-        {/* <div
-          className="hero min-h-screen "
-          style={{
-            backgroundImage: `url(${Skyrim})`,
-          }}
-        >
-          <div className="hero bg-opacity-60"></div>
-          <div className=" hero-content text-neutral-content justify-end items-center flex">
-            <div className="max-w-md">
-              <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
-              <p className="mb-5">
-                Provident cupiditate voluptatem et in. Quaerat fugiat ut
-                assumenda excepturi exercitationem quasi. In deleniti eaque aut
-                repudiandae et a id nisi.
-              </p>
-              <button className="btn btn-primary">Get Started</button>
-            </div>
+      <main className="pt-20">
+
+
+
+
+        {/* 第一部分 - 左文字右图片 */}
+        <div className="hero bg-base-300 min-h-screen flex flex-col lg:flex-row">
+          {/* 左侧 - 文字部分 */}
+          <div className="flex pt-3 flex-row lg:flex-col">
+            <ul></ul>
+            <ul><GitHubIcon /></ul>
+            <ul>Facebook</ul>
           </div>
-        </div> */}
-        <div className="hero min-h-screen flex">
-          {/* 左侧部分 - 文字 */}
-          <div className="flex-1 flex items-center justify-center bg-gray-800 text-white p-8">
-            <div className="max-w-lg">
-              <h1 className="text-5xl font-bold mb-6">Welcome to Skyrim Wu</h1>
-              <p className="text-lg mb-6">
-                Provident cupiditate voluptatem et in. Quaerat fugiat ut
-                assumenda excepturi exercitationem quasi. In deleniti eaque aut
-                repudiandae et a id nisi.
-              </p>
-              <button className="btn btn-primary">Get Started</button>
-            </div>
+          <div className="flex-1 flex flex-col justify-center items-start p-6 mx-6">
+            <h1 className="text-5xl font-bold mb-6">Hello!</h1>
+            <p className="py-6 text-lg">
+              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
+              quasi. In deleniti eaque aut repudiandae et a id nisi.
+            </p>
+            <button className="btn btn-primary">Get Started</button>
           </div>
 
-          {/* 右侧部分 - 图片 */}
-          <div
-            className="flex-1 bg-cover bg-center"
-            style={{
-              backgroundImage: `url(${Skyrim})`,
-            }}
-          ></div>
+
+
+          {/* 右侧 - 图片部分 */}
+          <div className="flex-1 flex items-center justify-center ">
+            <img
+              src={Skyrim}
+              alt="Skyrim"
+              className="rounded-lg shadow-2xl w-full h-full object-cover"
+            />
+          </div>
         </div>
-
         <div className="hero bg-base-300 min-h-screen">
           <div className="hero-content flex-col lg:flex-row-reverse">
             <img
