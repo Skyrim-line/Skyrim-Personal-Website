@@ -1,6 +1,5 @@
 import Navbar from "./components/navbar";
 import Skyrim from "../../public/homepage.jpg";
-import GitHubIcon from '@mui/icons-material/GitHub';
 import { FaGithub } from "react-icons/fa";
 
 
@@ -16,9 +15,18 @@ function Home() {
         {/* 第一部分 - 左文字右图片 */}
         <div className="hero bg-base-300 min-h-screen flex flex-col lg:flex-row">
           {/* 左侧 - 文字部分 */}
-          <div className="flex pt-3 flex-row lg:flex-col">
-            <ul></ul>
-            <ul><GitHubIcon /></ul>
+          <div className="flex mx-5 pt-3 flex-row lg:flex-col">
+
+            <a
+              href="https://github.com/Skyrim-line" // GitHub 链接
+              target="_blank" // 在新标签页打开链接
+              rel="noopener noreferrer" // 安全性增强
+              className="text-gray-600 hover:scale-110 transition-transform duration-300 text-4xl"
+            >
+              <FaGithub />
+            </a>
+
+
             <ul>Facebook</ul>
           </div>
           <div className="flex-1 flex flex-col justify-center items-start p-6 mx-6">

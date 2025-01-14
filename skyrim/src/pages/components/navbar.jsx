@@ -55,7 +55,9 @@ function Navbar() {
           </div>
           {/* 中间部分 - PC端 Logo 和导航 */}
           <div className="hidden lg:flex flex-1 items-center justify-center space-x-10">
-            <div className="text-3xl font-bold">Skyrim Wu</div>
+            <div className="hover-logo">
+              <span className="hover-text">Skyrim Wu</span>
+            </div>
             <ul className="menu menu-horizontal text-base-content font-normal text-2xl space-x-10">
               <li>
                 <a>Home</a>
