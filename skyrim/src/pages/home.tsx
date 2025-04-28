@@ -1,6 +1,6 @@
-import { Navbar } from "../components/navbar";
-import { Footer } from "../components/footer";
-
+import { Navbar } from "@/components/navbar";
+import { Footer } from "@/components/footer";
+import Skyrim from "@/assets/homepage.jpg";
 function Home() {
   return (
     <div className="bg-base-300 min-h-screen">
@@ -17,11 +17,11 @@ function Home() {
               </p>
             </div>
             <div className="w-full lg:w-1/2 flex items-center justify-center p-6">
-              {/* <img
+              <img
                 src={Skyrim}
                 alt="Skyrim"
                 className="rounded-lg shadow-2xl w-full h-auto object-cover max-h-[700px]"
-              /> */}
+              />
             </div>
           </div>
         </section>
