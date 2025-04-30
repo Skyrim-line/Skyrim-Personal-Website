@@ -17,14 +17,13 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 transition-colors duration-300">
       <Navbar />
-      <main className="px-4 sm:px-6 lg:px-8 py-12 md:py-20 w-ful  mx-auto">
+      <main className="px-4 sm:px-8 lg:px-14 py-12 md:py-20 w-full xl:w-[90%] mx-auto">
         <div
           className={`flex flex-col lg:flex-row items-center justify-between gap-8 md:gap-12 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           } transition-all duration-700`}>
-          {/* Left content area */}
           <div className="w-full lg:w-1/2 space-y-6 mb-8 lg:mb-0">
-            <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-800 dark:text-white">
+            <div className="text-5xl sm:text-6xl md:text-7xl xlg:text-8xl font-bold text-gray-800 dark:text-white">
               <span className="block text-center lg:text-left">Hi There!</span>
               <span className="block mt-2 text-indigo-600 dark:text-indigo-400 text-center lg:text-left">
                 Welcome to my world
@@ -52,13 +51,13 @@ export default function Home() {
           </div>
 
           {/* Right image area */}
-          <div className="w-full lg:w-1/2">
-            <div className="relative">
+          <div className="w-full flex justify-center">
+            <div className="relative w-full max-w-[600px] lg:max-w-full">
               <div className="absolute inset-0 bg-indigo-200 dark:bg-indigo-900 rounded-2xl transform rotate-3 scale-105 opacity-30"></div>
               <img
                 src={Skyrim}
                 alt="Skyrim"
-                className="relative rounded-xl shadow-xl w-full object-cover"
+                className="relative rounded-xl shadow-xl w-full h-auto object-cover"
                 style={{ maxHeight: "600px" }}
               />
             </div>
