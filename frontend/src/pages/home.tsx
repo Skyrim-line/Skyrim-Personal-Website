@@ -15,21 +15,21 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 transition-colors duration-300">
       <Navbar />
-      <main className="px-4 sm:px-6 lg:px-8 py-12 md:py-20 max-w-7xl mx-auto">
+      <main className="px-4 sm:px-6 lg:px-8 py-12 md:py-20 w-ful  mx-auto">
         <div
           className={`flex flex-col lg:flex-row items-center justify-between gap-8 md:gap-12 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           } transition-all duration-700`}>
           {/* Left content area */}
           <div className="w-full lg:w-1/2 space-y-6 mb-8 lg:mb-0">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 dark:text-white">
+            <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-800 dark:text-white">
               <span className="block text-center lg:text-left">Hi There!</span>
               <span className="block mt-2 text-indigo-600 dark:text-indigo-400 text-center lg:text-left">
                 Welcome to my world
               </span>
-            </h1>
+            </div>
 
             <p className="text-lg md:text-xl leading-relaxed text-gray-600 dark:text-gray-300 max-w-2xl text-center lg:text-left">
               Welcome to my personal website! I'm a software engineer with a
