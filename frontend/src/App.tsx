@@ -3,7 +3,7 @@ import Home from "@/pages/home";
 import { ThemeProvider } from "@/components/theme/themeProvider";
 function App() {
   return (
-    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+    <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
