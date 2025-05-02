@@ -1,21 +1,20 @@
 import Navbar from "@/components/layout/Navbar";
 import Skyrim from "../assets/Skyrim2.jpg";
 import { useState, useEffect } from "react";
+import PhotoGallery from "@/components/gallery/PhotoGallery";
 
 export default function Home() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Add a slight delay for animation effect
     const timer = setTimeout(() => {
       setIsVisible(true);
     }, 300);
-
     return () => clearTimeout(timer);
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 transition-colors duration-300">
+    <div className="min-h-screen transition-colors duration-300">
       <Navbar />
       <main className="px-4 sm:px-8 lg:px-14 py-12 md:py-20 w-full xl:w-[90%] mx-auto">
         <div
@@ -41,10 +40,10 @@ export default function Home() {
             </p>
 
             <div className="pt-4 flex justify-center lg:justify-start gap-4">
-              <button className="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg transition-colors duration-300">
+              <button className="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg transition-colors duration-300 cursor-pointer">
                 View Projects
               </button>
-              <button className="px-6 py-3 bg-transparent border border-indigo-600 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-gray-800 font-medium rounded-lg transition-colors duration-300">
+              <button className="px-6 py-3 bg-transparent cursor-pointer border border-indigo-600 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-gray-800 font-medium rounded-lg transition-colors duration-300">
                 Contact Me
               </button>
             </div>
@@ -57,12 +56,13 @@ export default function Home() {
               <img
                 src={Skyrim}
                 alt="Skyrim"
-                className="relative rounded-xl shadow-xl w-full h-auto object-cover"
-                style={{ maxHeight: "600px" }}
+                className="relative rounded-xl shadow-xl w-full h-auto object-cover max-h-[600px]"
               />
             </div>
           </div>
         </div>
+        {/* Dynamic Photo Gallery display here */}
+        <PhotoGallery />
       </main>
     </div>
   );

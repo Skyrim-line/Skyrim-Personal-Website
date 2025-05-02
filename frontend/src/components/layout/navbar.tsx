@@ -17,7 +17,7 @@ export default function Navbar() {
   const { setTheme } = useTheme();
 
   return (
-    <header className="flex w-full items-center justify-between px-2 sm:px-6 py-3 border-b  shadow-sm">
+    <header className="flex w-full items-center justify-between px-2 sm:px-6 border-b shadow-sm">
       <h1 className="sm:pl- text-3xl sm:text-sm  font-bold cursor-pointer whitespace-nowrap font-['Eras_Medium'] ">
         <Link to="/">Skyrim Wu</Link>
       </h1>
