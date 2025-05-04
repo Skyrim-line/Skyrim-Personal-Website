@@ -11,7 +11,7 @@ import img9 from "./photos/9.jpg";
 export const photoData = [
   {
     src: img1,
-    info: "Sydney Opera House, 2023",
+    info: "Sydney Harbour Bridge Vivid Show",
     description:
       "The Sydney Opera House is a multi-venue performing arts centre at Sydney Harbour. It is one of Australia's most famous landmarks.",
   },

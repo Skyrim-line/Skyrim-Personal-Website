@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { photoData } from "./PhotoData";
 
 import {
@@ -8,39 +8,77 @@ import {
 } from "@/components/ui/popover";
 
 export default function PhotoGallery() {
-  const doubleImages = [...photoData, ...photoData];
+  // 为了实现无缝循环，我们需要三份数据
+  const tripleImages = [...photoData, ...photoData, ...photoData];
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [openPopoverIndex, setOpenPopoverIndex] = useState<number | null>(null);
 
-  const handleMouseEnter = (index: number) => {
+  // 使用ref代替state来存储滚动位置，避免频繁重渲染
+  const positionRef = useRef(0);
+  const galleryRef = useRef<HTMLDivElement>(null);
+  const animationRef = useRef<number | null>(null);
+  const isPausedRef = useRef(false);
+
+  const handleMouseEnter = (index: number): void => {
     setHoveredIndex(index);
     setOpenPopoverIndex(index);
+    isPausedRef.current = true;
   };
 
   const handleMouseLeave = () => {
     setHoveredIndex(null);
     setOpenPopoverIndex(null);
+    isPausedRef.current = false;
   };
 
   useEffect(() => {
-    // 当hoveredIndex发生变化时，控制滚动暂停状态
-    const slidingElement = document.querySelector(".animate-slide");
-    if (slidingElement instanceof HTMLElement) {
-      if (hoveredIndex !== null) {
-        slidingElement.style.animationPlayState = "paused";
-      } else {
-        slidingElement.style.animationPlayState = "running";
+    // 直接使用固定宽度而非动态计算
+    // w-64 = 16rem = 256px, 加上16px间距 = 272px
+    const imageFullWidth = 272; // 256px (w-64) + 16px (gap-4)
+    const setWidth = photoData.length * imageFullWidth;
+
+    // 更新DOM而不是状态
+    const updatePosition = () => {
+      if (!galleryRef.current) return;
+      galleryRef.current.style.transform = `translateX(-${positionRef.current}px)`;
+    };
+
+    const animate = () => {
+      // 只有在非暂停状态下才移动
+      if (!isPausedRef.current) {
+        // 递增位置
+        positionRef.current += 0.5; // 速度可以根据需要调整
+
+        // 当第一组照片完全滚出时，重置到第二组开始位置
+        if (positionRef.current >= setWidth) {
+          positionRef.current = 0;
+        }
+
+        // 直接更新DOM
+        updatePosition();
       }
-    }
-  }, [hoveredIndex]);
+
+      // 持续动画
+      animationRef.current = requestAnimationFrame(animate);
+    };
+
+    // 启动动画
+    animationRef.current = requestAnimationFrame(animate);
+
+    // 清理
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, []);
 
   return (
     <div className="overflow-hidden w-full mt-12 py-1 group">
       <div
-        className={`whitespace-nowrap animate-slide ${
-          hoveredIndex !== null ? "[animation-play-state:paused]" : ""
-        } group-hover:[animation-play-state:paused] flex gap-4`}>
-        {doubleImages.map((img, index) => (
+        ref={galleryRef}
+        className="whitespace-nowrap flex gap-4 will-change-transform">
+        {tripleImages.map((img, index) => (
           <Popover
             key={index}
             open={openPopoverIndex === index}
@@ -53,7 +91,7 @@ export default function PhotoGallery() {
             }}>
             <PopoverTrigger asChild>
               <div
-                className="relative inline-block"
+                className="relative inline-block image-container"
                 onMouseEnter={() => handleMouseEnter(index)}
                 onMouseLeave={handleMouseLeave}>
                 <div className="transition-all duration-300 ease-in-out rounded-lg shadow-md cursor-pointer w-64 h-40 overflow-hidden">
