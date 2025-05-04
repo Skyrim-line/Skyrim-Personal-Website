@@ -1,13 +1,5 @@
 import { useState, useEffect } from "react";
-import img1 from "./photos/1.jpg";
-import img2 from "./photos/2.jpg";
-import img3 from "./photos/3.jpg";
-import img4 from "./photos/4.jpg";
-// import img5 from "./photos/5.jpg";
-// import img6 from "./photos/6.jpg";
-// import img7 from "./photos/7.jpg";
-// import img8 from "./photos/8.jpeg";
-// import img9 from "./photos/9.jpg";
+import { photoData } from "./PhotoData";
 
 import {
   Popover,
@@ -15,35 +7,8 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 
-const images = [
-  {
-    src: img1,
-    info: "Sydney Opera House, 2023",
-    description:
-      "The Sydney Opera House is a multi-venue performing arts centre at Sydney Harbour. It is one of Australia's most famous landmarks.",
-  },
-  {
-    src: img2,
-    info: "Blue Mountains, 2023",
-    description:
-      "The Blue Mountains is a mountainous region in New South Wales, Australia. It is known for its dramatic scenery and cultural significance.",
-  },
-  {
-    src: img3,
-    info: "Bondi Beach, 2024",
-    description:
-      "Bondi Beach is a popular beach and the name of the surrounding suburb in Sydney. Bondi Beach is one of Australia's most famous beaches and is located 7 km east of the Sydney central business district.",
-  },
-  {
-    src: img4,
-    info: "Melbourne Skyline, 2023",
-    description:
-      "Melbourne is the coastal capital of the southeastern Australian state of Victoria. It has a vibrant cultural scene and is known for its graffiti laneways, excellent restaurants, and major sports venues.",
-  },
-];
-
 export default function PhotoGallery() {
-  const doubleImages = [...images, ...images]; // 实现无限滚动
+  const doubleImages = [...photoData, ...photoData];
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [openPopoverIndex, setOpenPopoverIndex] = useState<number | null>(null);
 
@@ -70,7 +35,7 @@ export default function PhotoGallery() {
   }, [hoveredIndex]);
 
   return (
-    <div className="overflow-hidden w-full py-10 group">
+    <div className="overflow-hidden w-full mt-12 py-1 group">
       <div
         className={`whitespace-nowrap animate-slide ${
           hoveredIndex !== null ? "[animation-play-state:paused]" : ""

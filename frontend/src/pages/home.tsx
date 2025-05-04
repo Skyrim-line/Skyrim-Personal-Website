@@ -2,6 +2,7 @@ import Navbar from "@/components/layout/Navbar";
 import Skyrim from "../assets/Skyrim2.jpg";
 import { useState, useEffect } from "react";
 import PhotoGallery from "@/components/gallery/PhotoGallery";
+import { Camera } from "lucide-react";
 
 export default function Home() {
   const [isVisible, setIsVisible] = useState(false);
@@ -16,7 +17,7 @@ export default function Home() {
   return (
     <div className="min-h-screen transition-colors duration-300">
       <Navbar />
-      <main className="px-4 sm:px-8 lg:px-14 py-12 md:py-20 w-full xl:w-[90%] mx-auto">
+      <main className="pt-[150px] pb-0 px-4 sm:px-8 lg:px-14 w-full xl:w-[90%] mx-auto">
         <div
           className={`flex flex-col lg:flex-row items-center justify-between gap-8 md:gap-12 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
@@ -51,7 +52,7 @@ export default function Home() {
 
           {/* Right image area */}
           <div className="w-full flex justify-center">
-            <div className="relative w-full max-w-[600px] lg:max-w-full">
+            <div className="relative z-10 w-full max-w-[600px] lg:max-w-full">
               <div className="absolute inset-0 bg-indigo-200 dark:bg-indigo-900 rounded-2xl transform rotate-3 scale-105 opacity-30"></div>
               <img
                 src={Skyrim}
@@ -63,6 +64,14 @@ export default function Home() {
         </div>
         {/* Dynamic Photo Gallery display here */}
         <PhotoGallery />
+        <div className="text-center my-2 transition-all duration-700 hover:scale-[1.02]">
+          <p className="mt-2 text-gray-600 dark:text-gray-300 text-base text-sm sm:text-lg italic">
+            Fragments of life, frozen in time
+          </p>
+          <p className="text-center text-sm text-gray-500 dark:text-gray-400 mt-6 animate-pulse">
+            (Scroll down to view more...)
+          </p>
+        </div>
       </main>
     </div>
   );
