@@ -1,60 +1,75 @@
-import img1 from "./photos/1.jpg";
-import img2 from "./photos/2.jpg";
+import img1 from "./photos/vivid.jpg";
+import img2 from "./photos/hangzhou.jpg";
 import img3 from "./photos/3.jpg";
-import img4 from "./photos/4.jpg";
-import img6 from "./photos/6.jpg";
-import img7 from "./photos/7.jpg";
-import img8 from "./photos/8.jpeg";
-import img9 from "./photos/9.jpg";
+import img4 from "./photos/bondibeach.jpg";
+import img5 from "./photos/kunming.jpg";
+import img6 from "./photos/sydney-4.jpg";
+import img7 from "./photos/8.jpeg";
+import img8 from "./photos/2.jpg";
 
 export const photoData = [
   {
     src: img1,
-    info: "Sydney Harbour Bridge Vivid Show",
+    info: "Sydney Vivid Show 2023",
+    date: "26th May 2023",
+    location: "Sydney, Australia",
     description:
-      "The Sydney Opera House is a multi-venue performing arts centre at Sydney Harbour. It is one of Australia's most famous landmarks.",
+      "A dazzling display of lights at the Sydney Opera House during Vivid Sydney 2023, celebrating creativity with immersive projections and vibrant cityscapes.",
   },
   {
     src: img2,
-    info: "Sydney Opera House",
+    info: "Xihu, Hangzhou",
+    date: "1st May 2023",
+    location: "Hangzhou, China",
     description:
-      "The Blue Mountains is a mountainous region in New South Wales, Australia. It is known for its dramatic scenery and cultural significance.",
+      "West Lake in Hangzhou, China, is renowned for its picturesque beauty, tranquil waters, and classical Chinese gardens—a UNESCO World Heritage site rich in culture and history.",
   },
   {
     src: img3,
-    info: "Bondi Beach",
+    info: "Bondi Rocks",
+    date: "15th June 2024",
+    location: "Bondi Beach, Sydney, Australia",
     description:
-      "Bondi Beach is a popular beach and the name of the surrounding suburb in Sydney. Bondi Beach is one of Australia's most famous beaches and is located 7 km east of the Sydney central business district.",
+      "The rugged rocks at the southern end of Bondi Beach offer dramatic ocean views and are a popular spot for photography and coastal walks.",
   },
   {
     src: img4,
-    info: "Palm Cove, Cairns",
+    info: "Bondi Beach",
+    date: "15th June 2024",
+    location: "Bondi Beach, Sydney, Australia",
     description:
-      "Melbourne is the coastal capital of the southeastern Australian state of Victoria. It has a vibrant cultural scene and is known for its graffiti laneways, excellent restaurants, and major sports venues.",
+      "Bondi Beach is one of Australia's most iconic beaches, famous for its golden sands, surfing culture, and laid-back lifestyle just minutes from central Sydney.",
   },
-
+  {
+    src: img5,
+    info: "Dian Chi Night View",
+    date: "6th April 2023",
+    location: "Kunming, Yunnan, China",
+    description:
+      "Known as the 'City of Eternal Spring,' Kunming in Yunnan Province offers a mild climate year-round and is a gateway to the region’s ethnic diversity and natural wonders.",
+  },
   {
     src: img6,
-    info: "Uluru, 2023",
+    info: "North Sydney City View",
+    date: "16th Sep 2023",
+    location: "North Sydney, Australia",
     description:
-      "Uluru, also known as Ayers Rock, is a large sandstone rock formation in the southern part of the Northern Territory in central Australia. It is sacred to the Indigenous people of the area.",
+      "A panoramic view of Sydney’s modern skyline featuring the Harbour Bridge and Opera House, capturing the vibrant energy of Australia's largest city.",
   },
   {
     src: img7,
-    info: "Whitsunday Islands, 2023",
+    info: "Sydney Night View",
+    date: "23th June 2023",
+    location: "UNSW Village Sydney, Australia",
     description:
-      "The Whitsunday Islands are a group of 74 islands located in the heart of the Great Barrier Reef. They are known for their stunning beaches and crystal-clear waters.",
+      "Sydney shines after dark with illuminated landmarks and city lights reflecting on the harbour, offering a magical urban nightscape.",
   },
   {
     src: img8,
-    info: "Daintree Rainforest, 2023",
+    info: "Macquarie Point",
+    date: "12th Sep 2023",
+    location: "Royal Botanic Garden, Sydney, Australia",
     description:
-      "The Daintree Rainforest is a tropical rainforest located in Far North Queensland, Australia. It is one of the oldest rainforests in the world and is home to a diverse range of flora and fauna.",
-  },
-  {
-    src: img9,
-    info: "Kangaroo Island, 2023",
-    description:
-      "Kangaroo Island is Australia's third-largest island and is known for its unique wildlife and stunning landscapes. It is home to many species that are not found anywhere else in Australia.",
+      "Macquarie Point offers stunning waterfront views of Sydney Harbour and is a peaceful spot to enjoy the city’s maritime charm.",
   },
 ];

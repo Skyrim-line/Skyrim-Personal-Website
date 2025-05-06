@@ -32,40 +32,27 @@ export default function PhotoGallery() {
   };
 
   useEffect(() => {
-    // 直接使用固定宽度而非动态计算
-    // w-64 = 16rem = 256px, 加上16px间距 = 272px
     const imageFullWidth = 272; // 256px (w-64) + 16px (gap-4)
     const setWidth = photoData.length * imageFullWidth;
-
-    // 更新DOM而不是状态
     const updatePosition = () => {
       if (!galleryRef.current) return;
       galleryRef.current.style.transform = `translateX(-${positionRef.current}px)`;
     };
 
     const animate = () => {
-      // 只有在非暂停状态下才移动
       if (!isPausedRef.current) {
-        // 递增位置
-        positionRef.current += 0.5; // 速度可以根据需要调整
-
-        // 当第一组照片完全滚出时，重置到第二组开始位置
+        positionRef.current += 0.4; // 速度可以根据需要调整
+        // 如果位置超过了三倍的图片宽度，就重置为0
         if (positionRef.current >= setWidth) {
           positionRef.current = 0;
         }
-
-        // 直接更新DOM
         updatePosition();
       }
 
-      // 持续动画
       animationRef.current = requestAnimationFrame(animate);
     };
 
-    // 启动动画
     animationRef.current = requestAnimationFrame(animate);
-
-    // 清理
     return () => {
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
@@ -74,7 +61,7 @@ export default function PhotoGallery() {
   }, []);
 
   return (
-    <div className="overflow-hidden w-full mt-12 py-1 group">
+    <div className="overflow-hidden w-full mt-12 py-1 group relative">
       <div
         ref={galleryRef}
         className="whitespace-nowrap flex gap-4 will-change-transform">
@@ -101,7 +88,6 @@ export default function PhotoGallery() {
                     className="w-full h-full object-cover rounded-lg"
                   />
                 </div>
-                {/* 拍摄信息 */}
                 <div
                   className={`mt-2 text-center text-sm text-gray-700 dark:text-gray-300 transition-opacity duration-300 ${
                     hoveredIndex === index ? "opacity-100" : "opacity-0"
@@ -110,19 +96,18 @@ export default function PhotoGallery() {
                 </div>
               </div>
             </PopoverTrigger>
-            <PopoverContent className="w-96 md:w-[600px] p-0" side="top">
+            <PopoverContent className="w-96 md:w-[1000px] p-0" side="top">
               <div className="flex flex-col md:flex-row overflow-hidden">
                 {/* Left side - Image */}
                 <div className="md:w-1/2 flex-shrink-0">
-                  <div className="h-48 md:h-64 overflow-hidden">
+                  <div className="h-48 md:h-90 overflow-hidden">
                     <img
                       src={img.src}
                       alt={img.info}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover rounded-lg"
                     />
                   </div>
                 </div>
-
                 {/* Right side - Details */}
                 <div className="md:w-1/2 p-4">
                   <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
@@ -134,18 +119,18 @@ export default function PhotoGallery() {
                   <div className="space-y-2">
                     <div>
                       <h4 className="text-sm font-semibold text-gray-800 dark:text-gray-200">
-                        拍摄日期
+                        Date Taken
                       </h4>
                       <p className="text-xs text-gray-600 dark:text-gray-400">
-                        {img.info.split(", ")[1]}
+                        {img.date}
                       </p>
                     </div>
                     <div>
                       <h4 className="text-sm font-semibold text-gray-800 dark:text-gray-200">
-                        拍摄地点
+                        Location
                       </h4>
                       <p className="text-xs text-gray-600 dark:text-gray-400">
-                        {img.info.split(", ")[0]}
+                        {img.location}
                       </p>
                     </div>
                   </div>
