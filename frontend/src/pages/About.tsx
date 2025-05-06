@@ -1,88 +1,10 @@
 import { useState } from "react";
 import { Code, Coffee, Gamepad, Map, Music, Book } from "lucide-react";
 import Skyrim from "../assets/sky3.png";
+import { softwareSkills, photographySkills } from "@/data/skills";
 
-import Figma from "../assets/figma.svg";
-import Ts from "../assets/ts.svg";
-import Tailwind from "../assets/tailwind-svgrepo-com.svg";
-import NextJS from "../assets/nextjs-svgrepo-com.svg";
-import Docker from "../assets/docker.svg";
-import HTML from "../assets/html.svg";
-import Linux from "../assets/linux.svg";
-import MongoDB from "../assets/mongodb.svg";
-import Python from "../assets/python.svg";
-import Rust from "../assets/rust.svg";
-import React from "../assets/react.svg";
-import Davinci from "../assets/DaVinci_Resolve_17_logo.svg";
-import PS from "../assets/ps.svg";
-import Bridge from "../assets/bridge.svg";
 export const About = () => {
   const [activeTab, setActiveTab] = useState("skills");
-
-  const softwareSkills = [
-    {
-      icon: <img src={Ts} alt="TypeScript" className="w-20 h-20" />,
-      name: "TypeScript",
-    },
-    {
-      icon: <img src={Tailwind} alt="Tailwind CSS" className="w-20 h-20" />,
-      name: "Tailwind CSS",
-    },
-    {
-      icon: <img src={HTML} alt="HTML" className="w-20 h-20 dark:invert" />,
-      name: "HTML",
-    },
-    {
-      icon: <img src={React} alt="React" className="w-20 h-20" />,
-      name: "React",
-    },
-    {
-      icon: (
-        <img src={NextJS} alt="Next.js" className="w-20 h-20 dark:invert" />
-      ),
-      name: "Next.js",
-    },
-    {
-      icon: <img src={Figma} alt="Figma" className="w-20 h-20" />,
-      name: "Figma",
-    },
-    {
-      icon: <img src={MongoDB} alt="MongoDB" className="w-20 h-20" />,
-      name: "MongoDB",
-    },
-    {
-      icon: <img src={Docker} alt="Docker" className="w-20 h-20" />,
-      name: "Docker",
-    },
-    {
-      icon: <img src={Rust} alt="Rust" className="w-20 h-20" />,
-      name: "Rust",
-    },
-    {
-      icon: <img src={Python} alt="Python" className="w-20 h-20" />,
-      name: "Python",
-    },
-
-    {
-      icon: <img src={Linux} alt="Linux" className="w-20 h-20" />,
-      name: "Linux",
-    },
-  ];
-
-  const photographySkills = [
-    {
-      icon: <img src={Davinci} alt="Davinci" className="w-20 h-20" />,
-      name: "DaVinci Resolve",
-    },
-    {
-      icon: <img src={PS} alt="Photoshop" className="w-20 h-20" />,
-      name: "Photoshop",
-    },
-    {
-      icon: <img src={Bridge} alt="Bridge" className="w-20 h-20 dark:invert" />,
-      name: "Bridge",
-    },
-  ];
 
   const interests = [
     {
@@ -189,11 +111,17 @@ export const About = () => {
                 Software Engineering
               </h4>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
-                {softwareSkills.map((skill, index) => (
+                {softwareSkills.map(({ icon, name, invert }, index) => (
                   <div key={index} className="flex flex-col items-center">
-                    {skill.icon}
+                    <img
+                      src={icon}
+                      alt={name}
+                      className={`w-10 h-10 sm:w-15 sm:h-15 md:w-20 md:h-20  ${
+                        invert ? "dark:invert" : ""
+                      }`}
+                    />
                     <span className="mt-2 text-gray-700 dark:text-white text-center">
-                      {skill.name}
+                      {name}
                     </span>
                   </div>
                 ))}
@@ -205,11 +133,17 @@ export const About = () => {
                 Photography Tools
               </h4>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
-                {photographySkills.map((skill, index) => (
+                {photographySkills.map(({ icon, name, invert }, index) => (
                   <div key={index} className="flex flex-col items-center">
-                    {skill.icon}
-                    <span className="mt-2 text-gray-700 dark:text-white text-center">
-                      {skill.name}
+                    <img
+                      src={icon}
+                      alt={name}
+                      className={`w-10 h-10 sm:w-15 sm:h-15 md:w-20 md:h-20 ${
+                        invert ? "dark:invert" : ""
+                      }`}
+                    />
+                    <span className="mt-2 text-sm sm:text-base text-gray-700 dark:text-white text-center">
+                      {name}
                     </span>
                   </div>
                 ))}
