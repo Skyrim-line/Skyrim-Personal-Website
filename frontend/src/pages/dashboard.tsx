@@ -15,7 +15,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen transition-colors duration-300">
+    <div className="min-h-screen transition-colors duration-100">
       <Navbar />
       <main className="pt-[150px] pb-0 px-4 sm:px-8 lg:px-14 w-full xl:w-[90%] mx-auto">
         <div
