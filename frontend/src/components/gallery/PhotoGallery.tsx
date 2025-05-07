@@ -89,7 +89,7 @@ export default function PhotoGallery() {
                   />
                 </div>
                 <div
-                  className={`mt-2 text-center text-sm text-gray-700 dark:text-gray-300 transition-opacity duration-300 ${
+                  className={`text-center text-sm text-gray-700 dark:text-gray-300 transition-opacity duration-300 ${
                     hoveredIndex === index ? "opacity-100" : "opacity-0"
                   }`}>
                   {img.info}

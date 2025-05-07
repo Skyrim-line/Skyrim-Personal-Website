@@ -61,7 +61,7 @@ export default function Home() {
         {/* Dynamic Photo Gallery display here */}
         <PhotoGallery />
         <div className="text-center my-2 transition-all duration-700 hover:scale-[1.02]">
-          <p className="mt-2 text-gray-600 dark:text-gray-300 text-base text-sm sm:text-lg italic">
+          <p className="text-gray-600 dark:text-gray-300 text-base text-sm sm:text-lg italic">
             Fragments of life, frozen in time
           </p>
           <p className="text-center text-sm text-gray-500 dark:text-gray-400 mt-6 animate-pulse">

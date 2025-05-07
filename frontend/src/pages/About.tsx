@@ -1,51 +1,23 @@
 import { useState } from "react";
-import { Code, Coffee, Gamepad, Map, Music, Book } from "lucide-react";
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+} from "@/components/ui/popover";
+import QRCode from "../assets/theskyrim.jpg"; // Placeholder for WeChat QR code
+import Github from "../assets/github.svg";
+import Linkedin from "../assets/linkedin.svg";
+import Gmail from "../assets/gmail.svg";
+import Wechat from "../assets/wechat.svg";
 import Skyrim from "../assets/sky3.png";
+import INS from "../assets/ins.svg";
 import { softwareSkills, photographySkills } from "@/data/skills";
+import UNSW from "../assets/unsw.png";
+import HFUT from "../assets/HFUT.svg";
+import { Separator } from "@/components/ui/separator";
 
 export const About = () => {
   const [activeTab, setActiveTab] = useState("skills");
-
-  const interests = [
-    {
-      icon: <Gamepad className="h-6 w-6" />,
-      name: "Gaming",
-      desc: "RPG enthusiast, especially love Skyrim (just like my name!)",
-    },
-    {
-      icon: <Code className="h-6 w-6" />,
-      name: "Coding",
-      desc: "Always exploring new tech stacks and programming challenges",
-    },
-    {
-      icon: <Coffee className="h-6 w-6" />,
-      name: "Coffee",
-      desc: "Finding the perfect latte is my daily mission",
-    },
-    {
-      icon: <Music className="h-6 w-6" />,
-      name: "Music",
-      desc: "Playing piano and listening to electronic music helps me relax",
-    },
-    {
-      icon: <Map className="h-6 w-6" />,
-      name: "Travel",
-      desc: "Exploring different cultures and places is my passion",
-    },
-    {
-      icon: <Book className="h-6 w-6" />,
-      name: "Reading",
-      desc: "Tech and sci-fi novels are my favorites",
-    },
-  ];
-
-  const funFacts = [
-    "My name Simin sounds similar to my favorite game 'Skyrim'",
-    "I once coded for 24 hours straight during a hackathon and won first place",
-    "I speak three languages: Chinese, English, and JavaScript 😉",
-    "My caffeine intake probably exceeds healthy standards",
-    "My cat is named 'Bug' because it always appears when I'm debugging critical code",
-  ];
 
   return (
     <div className="flex flex-col lg:flex-row mt-12 min-h-screen items-center justify-center">
@@ -70,30 +42,32 @@ export const About = () => {
         <div className="mt-8 flex gap-4">
           <button
             onClick={() => setActiveTab("skills")}
-            className={`px-4 py-2 rounded-full ${
-              activeTab === "skills"
-                ? "bg-blue-500 text-white"
-                : "bg-gray-200 dark:bg-gray-700"
-            }`}>
+            className={`px-4 py-2 rounded-full shadow-md cursor-pointer transition-all duration-200
+          ${
+            activeTab === "skills"
+              ? "bg-blue-500 text-white hover:bg-blue-600"
+              : "bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-white hover:bg-gray-300 dark:hover:bg-gray-600"
+          }`}>
             Skills
           </button>
+
           <button
-            onClick={() => setActiveTab("interests")}
-            className={`px-4 py-2 rounded-full ${
-              activeTab === "interests"
-                ? "bg-blue-500 text-white"
-                : "bg-gray-200 dark:bg-gray-700"
+            onClick={() => setActiveTab("Education")}
+            className={`px-4 py-2 rounded-full shadow-md cursor-pointer transition-all duration-200 ${
+              activeTab === "Education"
+                ? "bg-blue-500 text-white hover:bg-blue-600"
+                : "bg-gray-200 dark:bg-gray-700  dark:text-white hover:bg-gray-300 dark:hover:bg-gray-600"
             }`}>
-            Interests
+            Education
           </button>
           <button
-            onClick={() => setActiveTab("funFacts")}
-            className={`px-4 py-2 rounded-full ${
-              activeTab === "funFacts"
-                ? "bg-blue-500 text-white"
-                : "bg-gray-200 dark:bg-gray-700"
+            onClick={() => setActiveTab("contact")}
+            className={`px-4 py-2 rounded-full shadow-md cursor-pointer transition-all duration-200 ${
+              activeTab === "contact"
+                ? "bg-blue-500 text-white hover:bg-blue-600"
+                : "bg-gray-200 dark:bg-gray-700  dark:text-white hover:bg-gray-300 dark:hover:bg-gray-600"
             }`}>
-            Fun Facts
+            Contact
           </button>
         </div>
       </div>
@@ -152,45 +126,145 @@ export const About = () => {
           </div>
         )}
 
-        {activeTab === "interests" && (
+        {activeTab === "Education" && (
           <div className="space-y-6">
-            <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-4">
-              My Interests
+            <h3 className="text-3xl font-semibold text-gray-800 dark:text-white mb-4">
+              Education
             </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {interests.map((interest, index) => (
-                <div
-                  key={index}
-                  className="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg hover:shadow-lg transition-all">
-                  <div className="flex items-center gap-3 mb-3">
-                    {interest.icon}
-                    <h4 className="text-lg font-bold dark:text-white">
-                      {interest.name}
-                    </h4>
-                  </div>
-                  <p className="text-gray-600 dark:text-gray-400">
-                    {interest.desc}
+            <div className="flex flex-col gap-6">
+              {/* 教育经历卡片 1 */}
+              <div className="flex items-start gap-4 p-6 rounded-xl transition-all duration-300 transform bg-white/70 dark:bg-gray-800/60 hover:scale-[1.02] hover:shadow-xl hover:bg-indigo-50/80 dark:hover:bg-indigo-900/40">
+                <img
+                  src={UNSW}
+                  alt="UNSW"
+                  className="w-15 h-15 rounded-full shadow-lg object-cover transition-all duration-300"
+                />
+                <div className="space-y-2">
+                  <p className="text-xl font-semibold text-gray-800 dark:text-white">
+                    University of New South Wales
+                  </p>
+                  <p className="text-md text-gray-600 dark:text-gray-400">
+                    Master of Information Technology
+                  </p>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                    Mar 2023 - Mar 2025
                   </p>
                 </div>
-              ))}
+              </div>
+
+              <Separator className="my-1" />
+
+              <div className="flex items-start gap-4 p-6 rounded-xl transition-all duration-300 transform bg-white/70 dark:bg-gray-800/60 hover:scale-[1.02] hover:shadow-xl hover:bg-indigo-50/80 dark:hover:bg-indigo-900/40">
+                <img
+                  src={HFUT}
+                  alt="Tsinghua"
+                  className="w-15 h-15 rounded-full shadow-lg object-cover transition-all duration-300 dark:bg-white"
+                />
+                <div className="space-y-2">
+                  <p className="text-xl font-semibold text-gray-800 dark:text-white">
+                    Hefei University of Technology
+                  </p>
+                  <p className="text-md text-gray-600 dark:text-gray-400">
+                    Bachelor of Software Engineering
+                  </p>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                    Sep 2018 - Jun 2022
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         )}
 
-        {activeTab === "funFacts" && (
+        {activeTab === "contact" && (
           <div className="space-y-6">
-            <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-4">
-              Fun Facts About Me
+            <h3 className="text-3xl font-semibold text-gray-800 dark:text-white mb-4">
+              Let's Connect!
             </h3>
-            <div className="bg-gradient-to-br from-purple-50 to-blue-50 dark:from-purple-900/30 dark:to-blue-900/30 p-6 rounded-xl">
-              <ul className="space-y-4">
-                {funFacts.map((fact, index) => (
-                  <li key={index} className="flex items-start gap-2">
-                    <span className="inline-block mt-1 text-blue-500">•</span>
-                    <p className="text-gray-700 dark:text-gray-300">{fact}</p>
-                  </li>
-                ))}
-              </ul>
+            <div className=" rounded-xl">
+              <p className="text-lg md:text-xl leading-relaxed text-gray-600 dark:text-gray-300 mb-4">
+                I’ve recently graduated and am currently seeking job
+                opportunities. I’m always open to potential collaborations,
+                creative ideas, or just meaningful conversations. Feel free to
+                connect with me — whether it’s to share your story, explore
+                opportunities together, or simply chat about something
+                interesting. I’d love to hear from you!
+              </p>
+
+              <div className="flex gap-4">
+                {/* GitHub */}
+                <a
+                  href="https://github.com/yourusername"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3 rounded-full bg-white dark:bg-gray-800 shadow-md hover:shadow-lg transition-all hover:scale-105">
+                  <img src={Github} alt="GitHub" className="w-12 h-12" />
+                </a>
+
+                {/* LinkedIn */}
+                <a
+                  href="https://www.linkedin.com/in/yourusername/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3 rounded-full bg-white dark:bg-gray-800 shadow-md hover:shadow-lg transition-all hover:scale-105">
+                  <img src={Linkedin} alt="LinkedIn" className="w-12 h-12" />
+                </a>
+
+                {/* Email */}
+                <a
+                  href="mailto:youremail@example.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3 rounded-full dark:bg-gray-600 shadow-md hover:shadow-lg transition-all hover:scale-105">
+                  <img src={Gmail} alt="Email" className="w-12 h-12 " />
+                </a>
+                {/* <a
+                  href="mailto:youremail@example.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3 rounded-full bg-white dark:bg-gray-800 shadow-md hover:shadow-lg transition-all hover:scale-105">
+                  <img src={Wechat} alt="Wechat" className="w-12 h-12" />
+                </a> */}
+
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <button
+                      className="p-3 rounded-full bg-white dark:bg-gray-800 shadow-md hover:shadow-lg transition-all hover:scale-105"
+                      aria-label="WeChat QR">
+                      <img src={Wechat} alt="WeChat" className="w-12 h-12" />
+                    </button>
+                  </PopoverTrigger>
+                  <PopoverContent
+                    side="bottom"
+                    align="center"
+                    sideOffset={8}
+                    avoidCollisions={false}
+                    className="w-60 p-4 text-center rounded-xl shadow-xl bg-white dark:bg-gray-900">
+                    <p className="text-sm text-gray-700 dark:text-gray-300 mb-2 leading-relaxed">
+                      Scan to connect on WeChat
+                      <br />
+                      or search:{" "}
+                      <span className="font-semibold text-blue-600 dark:text-blue-400">
+                        wsmskyrim
+                      </span>
+                    </p>
+
+                    <img
+                      src={QRCode}
+                      alt="WeChat QR"
+                      className="w-full h-auto mt-2 rounded-md border border-gray-200 dark:border-gray-700"
+                    />
+                  </PopoverContent>
+                </Popover>
+
+                <a
+                  href="https://www.instagram.com/skyrim_sc/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3 rounded-full bg-white dark:bg-gray-800 shadow-md hover:shadow-lg transition-all hover:scale-105">
+                  <img src={INS} alt="Instagram" className="w-12 h-12" />
+                </a>
+              </div>
             </div>
           </div>
         )}
