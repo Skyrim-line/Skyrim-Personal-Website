@@ -15,15 +15,15 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen transition-colors duration-100">
+    <div className="min-h-screen">
       <Navbar />
       <main className="pt-[150px] pb-0 px-4 sm:px-8 lg:px-14 w-full xl:w-[90%] mx-auto">
         <div
-          className={`flex flex-col lg:flex-row items-center justify-between gap-8 md:gap-12 ${
+          className={`flex flex-col mb-4 lg:flex-row items-center justify-between gap-8 md:gap-12 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          } transition-all duration-700`}>
+          } transition-transform duration-700`}>
           <div className="w-full lg:w-1/2 space-y-6 mb-8 lg:mb-0">
-            <div className="text-5xl sm:text-6xl md:text-7xl xlg:text-8xl font-bold text-gray-800 dark:text-white">
+            <div className="text-5xl sm:text-6xl md:text-7xl xlg:text-8xl font-bold">
               <span className="block text-center lg:text-left">Hi There!</span>
               <span className="block mt-2 text-indigo-600 dark:text-indigo-400 text-center lg:text-left">
                 Welcome to my world
@@ -37,10 +37,10 @@ export default function Home() {
             </p>
 
             <div className="pt-4 flex justify-center lg:justify-start gap-4">
-              <button className="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg transition-colors duration-300 cursor-pointer">
+              <button className="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg cursor-pointer">
                 View Projects
               </button>
-              <button className="px-6 py-3 bg-transparent cursor-pointer border border-indigo-600 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-gray-800 font-medium rounded-lg transition-colors duration-300">
+              <button className="px-6 py-3 bg-transparent cursor-pointer border border-indigo-600 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-gray-800 font-medium rounded-lg">
                 Contact Me
               </button>
             </div>
@@ -53,15 +53,18 @@ export default function Home() {
               <img
                 src={Skyrim}
                 alt="Skyrim"
+                loading="eager"
+                decoding="async"
+                fetchPriority="high"
                 className="relative rounded-xl shadow-xl w-full h-auto object-cover max-h-[600px]"
               />
             </div>
           </div>
         </div>
         {/* Dynamic Photo Gallery display here */}
-        <PhotoGallery />
-        <div className="text-center my-2 transition-all duration-700 hover:scale-[1.02]">
-          <p className="text-gray-600 dark:text-gray-300 text-base text-sm sm:text-lg italic">
+        {/* <PhotoGallery /> */}
+        <div className="text-center my-2 transition-transform duration-700 hover:scale-[1.02]">
+          <p className="text-sm sm:text-lg italic">
             Fragments of life, frozen in time
           </p>
           <p className="text-center text-sm text-gray-500 dark:text-gray-400 mt-6 animate-pulse">
