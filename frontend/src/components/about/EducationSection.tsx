@@ -1,5 +1,5 @@
 // components/About/EducationSection.tsx
-import { Separator } from "@/components/ui/separator";
+import { Separator } from "../ui/separator";
 import UNSW from "../../assets/unsw.png";
 import HFUT from "../../assets/HFUT.svg";
 
