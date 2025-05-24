@@ -3,10 +3,11 @@ import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
+  base: "/Skyrim-Personal-Website/", // 👈 注意仓库名大小写必须匹配
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
-      "@": "/src", // ✅ 简单兼容 Vercel 的写法，路径从根目录起
+      "@": "/src",
     },
   },
 });
