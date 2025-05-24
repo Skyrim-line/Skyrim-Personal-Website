@@ -62,7 +62,7 @@ export default function Home() {
           </div>
         </div>
         {/* Dynamic Photo Gallery display here */}
-        {/* <PhotoGallery /> */}
+        <PhotoGallery />
         <div className="text-center my-2 transition-transform duration-700 hover:scale-[1.02]">
           <p className="text-sm sm:text-lg italic">
             Fragments of life, frozen in time
@@ -71,7 +71,6 @@ export default function Home() {
             (Scroll down to view more...)
           </p>
         </div>
-        {/* About me */}
         <About />
       </main>
     </div>

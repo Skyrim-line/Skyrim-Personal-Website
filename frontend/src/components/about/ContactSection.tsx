@@ -17,11 +17,11 @@ export const ContactSection = () => (
       Let's Connect!
     </h3>
     <p className="text-lg md:text-xl leading-relaxed text-gray-600 dark:text-gray-300 mb-4">
-      I’ve recently graduated and am currently seeking job opportunities. I’m
+      I've recently graduated and am currently seeking job opportunities. I'm
       always open to potential collaborations, creative ideas, or just
-      meaningful conversations. Feel free to connect with me — whether it’s to
+      meaningful conversations. Feel free to connect with me — whether it's to
       share your story, explore opportunities together, or simply chat about
-      something interesting. I’d love to hear from you!
+      something interesting. I'd love to hear from you!
     </p>
     <div className="flex flex-wrap gap-4">
       <a
@@ -41,6 +41,7 @@ export const ContactSection = () => (
       <Popover>
         <PopoverTrigger asChild>
           <button
+            type="button"
             className="p-3 rounded-full bg-white dark:bg-gray-800 shadow-md hover:shadow-lg transition-all hover:scale-105 cursor-pointer"
             aria-label="Gmail">
             <img src={Gmail} alt="Gmail" className="w-12 h-12" />
@@ -58,6 +59,7 @@ export const ContactSection = () => (
       <Popover>
         <PopoverTrigger asChild>
           <button
+            type="button"
             className="p-3 rounded-full bg-white dark:bg-gray-800 shadow-md hover:shadow-lg transition-all hover:scale-105 cursor-pointer"
             aria-label="WeChat">
             <img src={Wechat} alt="WeChat" className="w-12 h-12" />
