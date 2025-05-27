@@ -18,7 +18,7 @@ export default function Navbar() {
 
   return (
     <header className="fixed top-0 z-50 w-full flex items-center justify-between px-2 sm:px-6 border-b shadow-sm bg-white dark:bg-gray-900">
-      <h1 className="sm:pl- text-3xl sm:text-sm  font-bold cursor-pointer whitespace-nowrap font-['Eras_Medium'] ">
+      <h1 className="sm:pl-1 text-3xl sm:text-sm  font-bold cursor-pointer whitespace-nowrap">
         <Link to="/">Skyrim Wu</Link>
       </h1>
       <nav className="hidden sm:flex space-x-4">

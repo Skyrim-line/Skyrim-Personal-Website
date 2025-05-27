@@ -1,4 +1,4 @@
-import Navbar from "../components/layout/Navbar";
+import Navbar from "@/components/layout/Navbar";
 import Skyrim from "../assets/Skyrim2.jpg";
 import { useState, useEffect } from "react";
 import PhotoGallery from "../components/gallery/PhotoGallery";
