@@ -2,6 +2,7 @@ import Navbar from "@/components/layout/Navbar";
 import Skyrim from "../assets/Skyrim2.jpg";
 import { useState, useEffect } from "react";
 import PhotoGallery from "../components/gallery/PhotoGallery";
+import ProjectsSection from "../components/projects/ProjectsSection";
 import { About } from "./About";
 
 export default function Home() {
@@ -57,6 +58,13 @@ export default function Home() {
                 decoding="async"
                 fetchPriority="high"
                 className="relative rounded-xl shadow-xl w-full h-auto object-cover max-h-[600px]"
+                sizes="(max-width: 768px) 100vw, 50vw"
+                width={800}
+                height={600}
+                style={{
+                  contentVisibility: "auto",
+                  containIntrinsicSize: "800px 600px",
+                }}
               />
             </div>
           </div>
@@ -72,6 +80,7 @@ export default function Home() {
           </p>
         </div>
         <About />
+        <ProjectsSection />
       </main>
     </div>
   );

@@ -1,20 +1,13 @@
 import { HoverLinkButton } from "./HoverLinkButton";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Download, Menu, Moon, Sun } from "lucide-react";
-import { useTheme } from "@/components/theme/themeProvider";
-
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import { Menu, Moon, Sun } from "lucide-react";
+import { useThemeStore } from "@/store/theme";
 
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 export default function Navbar() {
-  const { setTheme } = useTheme();
+  const { isDark, toggleTheme } = useThemeStore();
 
   return (
     <header className="fixed top-0 z-50 w-full flex items-center justify-between px-2 sm:px-6 border-b shadow-sm bg-white dark:bg-gray-900">
@@ -28,41 +21,14 @@ export default function Navbar() {
         <HoverLinkButton to="/contact">Gallery</HoverLinkButton>
       </nav>
 
-      <div className="flex items-center gap-3">
-        <Download className="sm:block cursor-pointer" />
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="outline" size="icon" className="cursor-pointer">
-              <Sun
-                className="h-[1.2rem] w-[1.2rem] transition-transform duration-200 rotate-0 scale-100 dark:-rotate-90 dark:scale-0"
-                style={{
-                  willChange: "transform, opacity",
-                  backfaceVisibility: "hidden",
-                }}
-              />
-              <Moon
-                className="absolute h-[1.2rem] w-[1.2rem] transition-transform duration-200 rotate-90 scale-0 dark:rotate-0 dark:scale-100"
-                style={{
-                  willChange: "transform, opacity",
-                  backfaceVisibility: "hidden",
-                }}
-              />
-
-              <span className="sr-only">Toggle theme</span>
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuItem onClick={() => setTheme("light")}>
-              Light
-            </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => setTheme("dark")}>
-              Dark
-            </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => setTheme("system")}>
-              System
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+      <div className="flex items-center gap-2">
+        <Button
+          variant="ghost"
+          onClick={toggleTheme}
+          className="rounded-full p-2 cursor-pointer"
+          aria-label="Toggle theme">
+          {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+        </Button>
 
         <Sheet>
           <SheetTrigger asChild>
@@ -93,11 +59,6 @@ export default function Navbar() {
               <a href="/contact" className="w-full">
                 <Button variant="ghost" className="w-full cursor-pointer">
                   Gallery
-                </Button>
-              </a>
-              <a href="/docs" className="w-full">
-                <Button variant="ghost" className="w-full cursor-pointer">
-                  Documentation
                 </Button>
               </a>
             </div>

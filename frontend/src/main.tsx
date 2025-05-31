@@ -1,10 +1,18 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.tsx'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./index.css";
+import App from "./App.tsx";
+import { StagewiseToolbar } from "@stagewise/toolbar-react";
 
-createRoot(document.getElementById('root')!).render(
+const stagewiseConfig = {
+  plugins: [],
+};
+
+const root = createRoot(document.getElementById("root")!);
+
+root.render(
   <StrictMode>
     <App />
-  </StrictMode>,
-)
+    {import.meta.env.DEV && <StagewiseToolbar config={stagewiseConfig} />}
+  </StrictMode>
+);

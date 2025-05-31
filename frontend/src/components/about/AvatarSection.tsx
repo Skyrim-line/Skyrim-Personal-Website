@@ -5,7 +5,17 @@ export const AvatarSection = () => (
     <img
       src={Skyrim}
       alt="Simin Wu"
-      className="w-80 h-80 object-cover object-center rounded-full border-4 border-blue-400 shadow-lg mb-6"
+      className="w-80 h-80 object-cover object-center rounded-full shadow-lg mb-6"
+      loading="eager"
+      decoding="async"
+      fetchPriority="high"
+      sizes="(max-width: 768px) 80vw, 320px"
+      width={320}
+      height={320}
+      style={{
+        contentVisibility: "auto",
+        containIntrinsicSize: "320px 320px",
+      }}
     />
     <h2 className="text-5xl sm:text-7xl font-semibold">About Me</h2>
     <p className="mt-6 text-lg md:text-xl leading-relaxed dark:text-gray-300 max-w-2xl">

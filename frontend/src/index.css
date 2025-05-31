@@ -138,6 +138,7 @@
   overflow: hidden;
   max-width: 100vw;
   margin-top: 3rem;
+  will-change: transform;
 }
 
 .logo-scroll {
@@ -159,6 +160,9 @@
     rgba(0, 0, 0, 1) 80%,
     rgba(0, 0, 0, 0)
   );
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .logo-scroll__wrapper {
@@ -166,6 +170,9 @@
   gap: var(--gap);
   min-width: 200%;
   animation: scroll var(--duration) linear infinite;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 .logo-scroll__wrapper:hover {
   animation-play-state: paused;
@@ -208,9 +215,9 @@
 /* Keyframes */
 @keyframes scroll {
   from {
-    transform: translateX(var(--scroll-start));
+    transform: translate3d(var(--scroll-start), 0, 0);
   }
   to {
-    transform: translateX(var(--scroll-end));
+    transform: translate3d(var(--scroll-end), 0, 0);
   }
 }

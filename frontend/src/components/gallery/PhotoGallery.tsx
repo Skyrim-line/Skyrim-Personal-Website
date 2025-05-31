@@ -38,6 +38,15 @@ export default function PhotoGallery() {
                         src={img.src}
                         alt={`photo-${index}`}
                         className="w-full h-full object-cover rounded transition-transform duration-300 hover:scale-105"
+                        loading="lazy"
+                        decoding="async"
+                        sizes="(max-width: 768px) 50vw, 25vw"
+                        width={300}
+                        height={200}
+                        style={{
+                          contentVisibility: "auto",
+                          containIntrinsicSize: "300px 200px",
+                        }}
                       />
                     </div>
                   </PopoverTrigger>
@@ -57,6 +66,15 @@ export default function PhotoGallery() {
                         src={img.src}
                         alt={img.info}
                         className="w-full h-full object-cover rounded-l-lg"
+                        loading="eager"
+                        decoding="async"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        width={500}
+                        height={400}
+                        style={{
+                          contentVisibility: "auto",
+                          containIntrinsicSize: "500px 400px",
+                        }}
                       />
                     </div>
                     <div className="md:w-1/2 p-4">
