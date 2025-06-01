@@ -2,7 +2,7 @@ import Navbar from "@/components/layout/Navbar";
 import Skyrim from "../assets/Skyrim2.jpg";
 import { useState, useEffect } from "react";
 import PhotoGallery from "../components/gallery/PhotoGallery";
-import ProjectsSection from "../components/projects/ProjectsSection";
+import ProjectsSection from "./ProjectsSection";
 import { About } from "./About";
 
 export default function Home() {
@@ -18,13 +18,15 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       <Navbar />
-      <main className="pt-[150px] pb-0 px-4 sm:px-8 lg:px-14 w-full xl:w-[90%] mx-auto">
+      <main
+        id="hero"
+        className="pt-[150px] pb-0 px-4 sm:px-8 lg:px-14 w-full xl:w-[90%] mx-auto">
         <div
           className={`flex flex-col mb-4 lg:flex-row items-center justify-between gap-8 md:gap-12 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           } transition-transform duration-700`}>
           <div className="w-full lg:w-1/2 space-y-6 mb-8 lg:mb-0">
-            <div className="text-5xl sm:text-6xl md:text-7xl xlg:text-8xl font-bold">
+            <div className="text-3xl sm:text-4xl md:text-5xl font-bold">
               <span className="block text-center lg:text-left">Hi There!</span>
               <span className="block mt-2 text-indigo-600 dark:text-indigo-400 text-center lg:text-left">
                 Welcome to my world

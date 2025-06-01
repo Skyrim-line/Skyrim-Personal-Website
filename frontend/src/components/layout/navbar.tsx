@@ -15,8 +15,8 @@ export default function Navbar() {
         <Link to="/">Skyrim Wu</Link>
       </h1>
       <nav className="hidden sm:flex space-x-4">
-        <HoverLinkButton to="/home">Home</HoverLinkButton>
-        <HoverLinkButton to="/about">About</HoverLinkButton>
+        <HoverLinkButton to="#hero">Home</HoverLinkButton>
+        <HoverLinkButton to="#about">About</HoverLinkButton>
         <HoverLinkButton to="/project">Project</HoverLinkButton>
         <HoverLinkButton to="/contact">Gallery</HoverLinkButton>
       </nav>
@@ -25,9 +25,13 @@ export default function Navbar() {
         <Button
           variant="ghost"
           onClick={toggleTheme}
-          className="rounded-full p-2 cursor-pointer"
+          className="rounded-full p-3 cursor-pointer"
           aria-label="Toggle theme">
-          {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+          {isDark ? (
+            <Sun className="!h-6 !w-6" />
+          ) : (
+            <Moon className="!h-6 !w-6" />
+          )}
         </Button>
 
         <Sheet>
@@ -41,12 +45,12 @@ export default function Navbar() {
           </SheetTrigger>
           <SheetContent side="top" className="w-full ">
             <div className="mt-10 flex flex-col gap-4 py-3 text-lg justify-center items-center">
-              <a href="/home" className="w-full">
+              <a href="#hero" className="w-full">
                 <Button variant="ghost" className="w-full cursor-pointer">
                   Home
                 </Button>
               </a>
-              <a href="/about" className="w-full">
+              <a href="/#about" className="w-full">
                 <Button variant="ghost" className="w-full cursor-pointer">
                   About
                 </Button>

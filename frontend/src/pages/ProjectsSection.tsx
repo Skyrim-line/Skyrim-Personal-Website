@@ -29,14 +29,14 @@ export default function ProjectsSection() {
 
   return (
     <div className="container mx-auto px-4 py-12 min-h-screen">
-      <h1 className="text-4xl font-bold text-center mb-12 text-gray-800 dark:text-white">
+      <h1 className="!text-3xl sm:!text-4xl md:!text-5xl font-bold text-left mb-12">
         My Projects
       </h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {projects.map((project) => (
           <Card
             key={project.id}
-            className="flex flex-col h-full hover:shadow-lg transition-shadow duration-300 cursor-pointer will-change-transform"
+            className="flex flex-col h-full hover:shadow-xl transition-all duration-300 cursor-pointer will-change-transform"
             onClick={() => handleCardClick(project)}>
             <CardHeader>
               <div className="aspect-video relative overflow-hidden rounded-t-lg">
@@ -44,14 +44,14 @@ export default function ProjectsSection() {
                   src={project.image}
                   alt={project.title}
                   className="object-cover w-full h-full"
-                  loading="lazy"
+                  loading="eager"
                   decoding="async"
                 />
               </div>
-              <CardTitle className="mt-4 text-xl font-bold text-gray-800 dark:text-white">
+              <CardTitle className="mt-4 text-2xl font-bold">
                 {project.title}
               </CardTitle>
-              <CardDescription className="text-gray-600 dark:text-gray-400">
+              <CardDescription className="text-lg text-gray-600 dark:text-gray-400">
                 {project.description}
               </CardDescription>
             </CardHeader>
@@ -60,7 +60,7 @@ export default function ProjectsSection() {
                 {project.technologies.map((tech) => (
                   <span
                     key={tech}
-                    className="px-3 py-1 text-sm bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full">
+                    className="px-2 py-1 text-xs sm:text-sm bg-gray-100 text-gray-700 rounded-full">
                     {tech}
                   </span>
                 ))}
@@ -75,7 +75,7 @@ export default function ProjectsSection() {
                     e.stopPropagation();
                     window.open(project.githubUrl, "_blank");
                   }}>
-                  <Github className="w-4 h-4" />
+                  <Github className="w-5 h-5" />
                   GitHub
                 </Button>
               )}
@@ -87,7 +87,7 @@ export default function ProjectsSection() {
                     e.stopPropagation();
                     window.open(project.liveUrl, "_blank");
                   }}>
-                  <ExternalLink className="w-4 h-4" />
+                  <ExternalLink className="w-5 h-5" />
                   Live Demo
                 </Button>
               )}
@@ -103,7 +103,7 @@ export default function ProjectsSection() {
           {selectedProject && (
             <>
               <DialogHeader>
-                <DialogTitle className="text-2xl font-bold text-gray-800 dark:text-white">
+                <DialogTitle className="text-2xl font-bold">
                   {selectedProject.title}
                 </DialogTitle>
                 <DialogDescription className="text-gray-600 dark:text-gray-400">
@@ -122,14 +122,12 @@ export default function ProjectsSection() {
                 </div>
 
                 <div className="space-y-4">
-                  <h3 className="text-xl font-semibold text-gray-800 dark:text-white">
-                    Technologies Used
-                  </h3>
+                  <h3 className="text-xl font-semibold ">Technologies Used</h3>
                   <div className="flex flex-wrap gap-2">
                     {selectedProject.technologies.map((tech) => (
                       <span
                         key={tech}
-                        className="px-4 py-2 text-sm bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full">
+                        className="px-2 py-1 text-xs sm:text-sm bg-gray-100 text-gray-700 rounded-full">
                         {tech}
                       </span>
                     ))}
