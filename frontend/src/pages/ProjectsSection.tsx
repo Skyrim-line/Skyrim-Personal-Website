@@ -9,26 +9,10 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Github, ExternalLink } from "lucide-react";
-import { useState, useCallback } from "react";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-} from "@/components/ui/dialog";
 
 export default function ProjectsSection() {
-  const [selectedProject, setSelectedProject] = useState<
-    (typeof projects)[0] | null
-  >(null);
-
-  const handleCardClick = useCallback((project: (typeof projects)[0]) => {
-    setSelectedProject(project);
-  }, []);
-
   return (
-    <div className="container mx-auto px-4 py-12 min-h-screen">
+    <div className="container px-2 md:px-4 py-12 min-h-screen">
       <h1 className="!text-3xl sm:!text-4xl md:!text-5xl font-bold text-left mb-12">
         My Projects
       </h1>
@@ -36,22 +20,21 @@ export default function ProjectsSection() {
         {projects.map((project) => (
           <Card
             key={project.id}
-            className="flex flex-col h-full hover:shadow-xl transition-all duration-300 cursor-pointer will-change-transform"
-            onClick={() => handleCardClick(project)}>
+            className="flex flex-col h-full hover:shadow-xl transition-all duration-300 cursor-pointer will-change-transform">
             <CardHeader>
-              <div className="aspect-video relative overflow-hidden rounded-t-lg">
+              <div className="aspect-video relative overflow-hidden rounded-lg group">
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="object-cover w-full h-full"
+                  className="object-cover w-full h-full rounded-lg group-hover:object-contain transition-all duration-300 md:blur-sm md:group-hover:blur-none md:scale-105 md:group-hover:scale-100"
                   loading="eager"
                   decoding="async"
                 />
               </div>
-              <CardTitle className="mt-4 text-2xl font-bold">
+              <CardTitle className="mt-4 text-xl sm:text-2xl font-bold">
                 {project.title}
               </CardTitle>
-              <CardDescription className="text-lg text-gray-600 dark:text-gray-400">
+              <CardDescription className="text-base sm:text-lg text-gray-600 dark:text-gray-400">
                 {project.description}
               </CardDescription>
             </CardHeader>
@@ -70,24 +53,24 @@ export default function ProjectsSection() {
               {project.githubUrl && (
                 <Button
                   variant="outline"
-                  className="flex items-center gap-2"
+                  className="flex items-center gap-2 text-sm sm:text-base"
                   onClick={(e) => {
                     e.stopPropagation();
                     window.open(project.githubUrl, "_blank");
                   }}>
-                  <Github className="w-5 h-5" />
+                  <Github className="w-4 h-4 sm:w-5 sm:h-5" />
                   GitHub
                 </Button>
               )}
               {project.liveUrl && (
                 <Button
                   variant="default"
-                  className="flex items-center gap-2"
+                  className="flex items-center gap-2 text-sm sm:text-base"
                   onClick={(e) => {
                     e.stopPropagation();
                     window.open(project.liveUrl, "_blank");
                   }}>
-                  <ExternalLink className="w-5 h-5" />
+                  <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5" />
                   Live Demo
                 </Button>
               )}
@@ -95,74 +78,6 @@ export default function ProjectsSection() {
           </Card>
         ))}
       </div>
-
-      <Dialog
-        open={!!selectedProject}
-        onOpenChange={() => setSelectedProject(null)}>
-        <DialogContent className="max-w-3xl">
-          {selectedProject && (
-            <>
-              <DialogHeader>
-                <DialogTitle className="text-2xl font-bold">
-                  {selectedProject.title}
-                </DialogTitle>
-                <DialogDescription className="text-gray-600 dark:text-gray-400">
-                  {selectedProject.description}
-                </DialogDescription>
-              </DialogHeader>
-
-              <div className="mt-6 space-y-6">
-                <div className="aspect-video relative overflow-hidden rounded-lg">
-                  <img
-                    src={selectedProject.image}
-                    alt={selectedProject.title}
-                    className="object-cover w-full h-full"
-                    loading="eager"
-                  />
-                </div>
-
-                <div className="space-y-4">
-                  <h3 className="text-xl font-semibold ">Technologies Used</h3>
-                  <div className="flex flex-wrap gap-2">
-                    {selectedProject.technologies.map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-2 py-1 text-xs sm:text-sm bg-gray-100 text-gray-700 rounded-full">
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="flex gap-4">
-                  {selectedProject.githubUrl && (
-                    <Button
-                      variant="outline"
-                      className="flex items-center gap-2"
-                      onClick={() =>
-                        window.open(selectedProject.githubUrl, "_blank")
-                      }>
-                      <Github className="w-4 h-4" />
-                      View on GitHub
-                    </Button>
-                  )}
-                  {selectedProject.liveUrl && (
-                    <Button
-                      variant="default"
-                      className="flex items-center gap-2"
-                      onClick={() =>
-                        window.open(selectedProject.liveUrl, "_blank")
-                      }>
-                      <ExternalLink className="w-4 h-4" />
-                      Visit Live Demo
-                    </Button>
-                  )}
-                </div>
-              </div>
-            </>
-          )}
-        </DialogContent>
-      </Dialog>
     </div>
   );
 }

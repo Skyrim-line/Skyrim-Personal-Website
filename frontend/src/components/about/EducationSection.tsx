@@ -19,7 +19,7 @@ export const EducationSection = () => (
         {
           logo: HFUT,
           school: "Hefei University of Technology",
-          degree: "Bachelor of Software Engineering",
+          degree: "Bachelor of Geotechnical Engineering",
           time: "Sep 2018 - Jun 2022",
         },
       ].map(({ logo, school, degree, time }, index) => (

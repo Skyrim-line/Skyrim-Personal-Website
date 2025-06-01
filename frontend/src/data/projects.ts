@@ -8,35 +8,61 @@ export interface Project {
   liveUrl?: string;
 }
 
+import EulerAI from "../assets/eulerai.jpg";
+import ICPC from "../assets/icpc.jpg";
+import BigBrain from "../assets/bigbrain.jpg";
+import NovaGraph from "../assets/novagraph.jpg";
+
 export const projects: Project[] = [
   {
     id: "1",
-    title: "Personal Portfolio",
-    description:
-      "A modern, responsive personal portfolio website built with React, TypeScript, and Tailwind CSS.",
-    image: "/projects/portfolio.jpg",
+    title: "EulerAI Website",
+    description: "EulerAI Company landing page",
+    image: EulerAI,
     technologies: ["React", "TypeScript", "Tailwind CSS", "Vite"],
     githubUrl: "https://github.com/yourusername/portfolio",
     liveUrl: "https://yourportfolio.com",
   },
   {
     id: "2",
-    title: "E-commerce Platform",
+    title: "ICPC Team Builder Platform",
     description:
-      "A full-stack e-commerce platform with user authentication, product management, and payment integration.",
-    image: "/projects/ecommerce.jpg",
-    technologies: ["Next.js", "MongoDB", "Stripe", "Tailwind CSS"],
+      "An intelligent team matching platform for ICPC contestants, helping participants find compatible teammates based on skills, experience, and competition goals.",
+    image: ICPC,
+    technologies: ["Next.js", "TypeScript", "Algorithm", "Team Matching"],
     githubUrl: "https://github.com/yourusername/ecommerce",
     liveUrl: "https://your-ecommerce.com",
   },
   {
     id: "3",
-    title: "Task Management App",
+    title: "NovaGraph Visualizer",
     description:
-      "A collaborative task management application with real-time updates and team features.",
-    image: "/projects/taskmanager.jpg",
-    technologies: ["React", "Node.js", "Socket.io", "MongoDB"],
+      "A powerful database relationship visualization tool built with WebAssembly (WASM) for high-performance graph rendering and interactive data exploration.",
+    image: NovaGraph,
+    technologies: [
+      "React",
+      "TypeScript",
+      "WebAssembly",
+      "C++",
+      "Graph Visualization",
+    ],
     githubUrl: "https://github.com/yourusername/task-manager",
     liveUrl: "https://your-taskmanager.com",
+  },
+  {
+    id: "4",
+    title: "BigBrain Game Platform",
+    description:
+      "A full-stack platform for creating and managing interactive quiz games, featuring real-time result analytics and user performance tracking.",
+    image: BigBrain,
+    technologies: [
+      "React",
+      "Node.js",
+      "Redis",
+      "Real-time Analytics",
+      "Game Design",
+    ],
+    githubUrl: "https://github.com/yourusername/bigbrain",
+    liveUrl: "https://your-bigbrain.com",
   },
 ];
