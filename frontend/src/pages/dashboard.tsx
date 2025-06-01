@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import PhotoGallery from "../components/gallery/PhotoGallery";
 import ProjectsSection from "./ProjectsSection";
 import { About } from "./About";
+import ContactMe from "./ContactMe";
+import Footer from "@/components/layout/Footer";
 
 export default function Home() {
   const [isVisible, setIsVisible] = useState(false);
@@ -40,10 +42,24 @@ export default function Home() {
             </p>
 
             <div className="pt-4 flex justify-center lg:justify-start gap-4">
-              <button className="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg cursor-pointer">
+              <button
+                type="button"
+                className="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg cursor-pointer"
+                onClick={() => {
+                  document
+                    .getElementById("projects")
+                    ?.scrollIntoView({ behavior: "smooth" });
+                }}>
                 View Projects
               </button>
-              <button className="px-6 py-3 bg-transparent cursor-pointer border border-indigo-600 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-gray-800 font-medium rounded-lg">
+              <button
+                type="button"
+                className="px-6 py-3 bg-transparent cursor-pointer border border-indigo-600 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-gray-800 font-medium rounded-lg"
+                onClick={() => {
+                  document
+                    .getElementById("contact")
+                    ?.scrollIntoView({ behavior: "smooth" });
+                }}>
                 Contact Me
               </button>
             </div>
@@ -83,6 +99,8 @@ export default function Home() {
         </div>
         <About />
         <ProjectsSection />
+        <ContactMe />
+        <Footer />
       </main>
     </div>
   );

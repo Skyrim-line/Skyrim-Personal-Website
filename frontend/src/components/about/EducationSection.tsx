@@ -9,42 +9,45 @@ export const EducationSection = () => (
       Education
     </h3>
     <div className="flex flex-col gap-6">
-      {[
-        {
-          logo: UNSW,
-          school: "University of New South Wales",
-          degree: "Master of Information Technology",
-          time: "Mar 2023 - Mar 2025",
-        },
-        {
-          logo: HFUT,
-          school: "Hefei University of Technology",
-          degree: "Bachelor of Geotechnical Engineering",
-          time: "Sep 2018 - Jun 2022",
-        },
-      ].map(({ logo, school, degree, time }, index) => (
-        <>
-          <div
-            key={school}
-            className="flex items-start gap-4 p-6 rounded-xl transition-all duration-300 transform bg-white/70 dark:bg-gray-800/60 hover:scale-[1.02] hover:shadow-xl hover:bg-indigo-50/80 dark:hover:bg-indigo-900/40">
-            <img
-              src={logo}
-              alt={school}
-              className="w-15 h-15 rounded-full shadow-lg object-cover transition-all duration-300"
-            />
-            <div className="space-y-2">
-              <p className="text-xl font-semibold text-gray-800 dark:text-white">
-                {school}
-              </p>
-              <p className="text-md text-gray-600 dark:text-gray-400">
-                {degree}
-              </p>
-              <p className="text-sm text-gray-500 dark:text-gray-400">{time}</p>
-            </div>
-          </div>
-          {index === 0 && <Separator className="my-1" />}
-        </>
-      ))}
+      <div className="flex items-start gap-4 p-6 rounded-xl transition-all duration-300 transform bg-white/70 dark:bg-gray-800/60 hover:scale-[1.02] hover:shadow-xl hover:bg-indigo-50/80 dark:hover:bg-indigo-900/40">
+        <img
+          src={UNSW}
+          alt="UNSW"
+          className="w-15 h-15 rounded-full shadow-lg object-cover transition-all duration-300"
+        />
+        <div className="space-y-2">
+          <p className="text-xl font-semibold text-gray-800 dark:text-white">
+            University of New South Wales
+          </p>
+          <p className="text-md text-gray-600 dark:text-gray-400">
+            Master of Information Technology
+          </p>
+          <p className="text-sm text-gray-500 dark:text-gray-400">
+            Mar 2023 - Mar 2025
+          </p>
+        </div>
+      </div>
+
+      <Separator className="my-1" />
+
+      <div className="flex items-start gap-4 p-6 rounded-xl transition-all duration-300 transform bg-white/70 dark:bg-gray-800/60 hover:scale-[1.02] hover:shadow-xl hover:bg-indigo-50/80 dark:hover:bg-indigo-900/40">
+        <img
+          src={HFUT}
+          alt="HFUT"
+          className="w-15 h-15 rounded-full shadow-lg object-cover transition-all duration-300 dark:bg-white"
+        />
+        <div className="space-y-2">
+          <p className="text-xl font-semibold text-gray-800 dark:text-white">
+            Hefei University of Technology
+          </p>
+          <p className="text-md text-gray-600 dark:text-gray-400">
+            Bachelor of Geotechnical Engineering
+          </p>
+          <p className="text-sm text-gray-500 dark:text-gray-400">
+            Sep 2018 - Jun 2022
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 );

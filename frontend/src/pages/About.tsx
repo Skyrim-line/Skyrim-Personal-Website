@@ -1,6 +1,6 @@
 // components/About/About.tsx
 import { useState } from "react";
-import { ContactSection } from "../components/about/ContactSection";
+import { ExperienceSection } from "../components/about/ExpSection";
 import { EducationSection } from "../components/about/EducationSection";
 import { SkillsSection } from "../components/about/SkillSection";
 import { AvatarSection } from "../components/about/AvatarSection";
@@ -18,7 +18,7 @@ export const About = () => {
           {[
             { label: "Skills", value: "skills" },
             { label: "Education", value: "Education" },
-            { label: "Contact", value: "contact" },
+            { label: "Experience", value: "Experience" },
           ].map(({ label, value }) => (
             <button
               key={value}
@@ -37,7 +37,7 @@ export const About = () => {
       <div className="w-full lg:w-1/2 p-12">
         {activeTab === "skills" && <SkillsSection />}
         {activeTab === "Education" && <EducationSection />}
-        {activeTab === "contact" && <ContactSection />}
+        {activeTab === "Experience" && <ExperienceSection />}
       </div>
     </div>
   );

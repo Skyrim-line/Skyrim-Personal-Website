@@ -3,26 +3,39 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Menu, Moon, Sun } from "lucide-react";
 import { useThemeStore } from "@/store/theme";
-import { useEffect } from "react";
-
+import { useEffect, useState } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 export default function Navbar() {
   const { isDark, toggleTheme } = useThemeStore();
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    const handleChange = (e: MediaQueryListEvent) => {
-      if (e.matches !== isDark) {
-        toggleTheme();
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 80;
+      if (isScrolled !== scrolled) {
+        setScrolled(isScrolled);
       }
     };
-    mediaQuery.addEventListener("change", handleChange);
-    return () => mediaQuery.removeEventListener("change", handleChange);
-  }, [isDark, toggleTheme]);
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [scrolled]);
+
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
-    <header className="fixed top-0 z-50 w-full flex items-center justify-between px-4 sm:px-6 py-3 border-b shadow-sm bg-white dark:bg-gray-900">
+    <header
+      className={`fixed top-0 z-50 w-full flex items-center justify-between px-4 sm:px-6 py-3 transition-all duration-300 will-change-transform ${
+        scrolled
+          ? "bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm border-b shadow-sm"
+          : "bg-transparent"
+      }`}>
       <h1 className="text-2xl sm:text-3xl font-bold cursor-pointer whitespace-nowrap">
         <Link
           to="/"
@@ -30,11 +43,12 @@ export default function Navbar() {
           Skyrim Wu
         </Link>
       </h1>
-      <nav className="hidden sm:flex space-x-6">
+      <nav className="hidden md:flex space-x-6">
         <HoverLinkButton to="#hero">Home</HoverLinkButton>
         <HoverLinkButton to="#about">About</HoverLinkButton>
-        <HoverLinkButton to="/project">Project</HoverLinkButton>
-        <HoverLinkButton to="/contact">Gallery</HoverLinkButton>
+        <HoverLinkButton to="#project">Project</HoverLinkButton>
+        <HoverLinkButton to="/gallery">Gallery</HoverLinkButton>
+        <HoverLinkButton to="#contact">Contact</HoverLinkButton>
       </nav>
 
       <div className="flex items-center gap-3">
@@ -55,40 +69,42 @@ export default function Navbar() {
             <Button
               variant="ghost"
               size="icon"
-              className="sm:hidden cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800">
+              className="md:hidden cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800">
               <Menu className="h-6 w-6" />
             </Button>
           </SheetTrigger>
           <SheetContent side="top" className="w-full">
             <div className="mt-8 flex flex-col gap-3 py-3 text-lg justify-center items-center">
-              <a href="#hero" className="w-full">
-                <Button
-                  variant="ghost"
-                  className="w-full cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800">
-                  Home
-                </Button>
-              </a>
-              <a href="#about" className="w-full">
-                <Button
-                  variant="ghost"
-                  className="w-full cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800">
-                  About
-                </Button>
-              </a>
-              <a href="/project" className="w-full">
-                <Button
-                  variant="ghost"
-                  className="w-full cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800">
-                  Project
-                </Button>
-              </a>
-              <a href="/contact" className="w-full">
-                <Button
-                  variant="ghost"
-                  className="w-full cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800">
-                  Gallery
-                </Button>
-              </a>
+              <Button
+                variant="ghost"
+                className="w-full cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800"
+                onClick={() => scrollToSection("hero")}>
+                Home
+              </Button>
+              <Button
+                variant="ghost"
+                className="w-full cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800"
+                onClick={() => scrollToSection("about")}>
+                About
+              </Button>
+              <Button
+                variant="ghost"
+                className="w-full cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800"
+                onClick={() => scrollToSection("projects")}>
+                Project
+              </Button>
+              <Button
+                variant="ghost"
+                className="w-full cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800"
+                onClick={() => scrollToSection("gallery")}>
+                Gallery
+              </Button>
+              <Button
+                variant="ghost"
+                className="w-full cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800"
+                onClick={() => scrollToSection("contact")}>
+                Contact
+              </Button>
             </div>
           </SheetContent>
         </Sheet>

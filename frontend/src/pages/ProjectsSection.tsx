@@ -12,11 +12,13 @@ import { Github, ExternalLink } from "lucide-react";
 
 export default function ProjectsSection() {
   return (
-    <div className="container px-2 md:px-4 py-12 min-h-screen">
-      <h1 className="!text-3xl sm:!text-4xl md:!text-5xl font-bold text-left mb-12">
+    <div
+      id="projects"
+      className="container mx-auto px-2 md:px-4 py-12 min-h-screen">
+      <h1 className="!text-3xl sm:!text-4xl md:!text-5xl font-semibold text-center mb-12">
         My Projects
       </h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
         {projects.map((project) => (
           <Card
             key={project.id}
