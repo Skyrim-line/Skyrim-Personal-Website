@@ -175,13 +175,19 @@
 }
 
 @font-face {
-  font-family: "Eras Demi";
-  src: url("./fonts/ITC_Eras_Demi_Regular.otf") format("woff2");
+  font-family: "ITC Eras Demi";
+  src: url("/fonts/ITC_Eras_Demi_Regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-  font-family: "Eras Medium";
-  src: url("./fonts/ITC_Eras_Medium.otf") format("woff2");
+  font-family: "ITC Eras Medium";
+  src: url("/fonts/ITC_Eras_Medium.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
 .logo-container {

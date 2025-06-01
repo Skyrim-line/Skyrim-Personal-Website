@@ -20,6 +20,14 @@ jobs:
       - name: Install Dependencies
         run: cd frontend && npm install
 
+      - name: Create fonts directory
+        run: cd frontend && mkdir -p public/fonts
+
+      - name: Copy fonts
+        run: |
+          cd frontend
+          cp src/fonts/* public/fonts/
+
       - name: Build
         run: cd frontend && npm run build
 
