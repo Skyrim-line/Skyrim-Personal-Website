@@ -55,7 +55,7 @@ export default function ProjectsSection() {
               {project.githubUrl && (
                 <Button
                   variant="outline"
-                  className="flex items-center gap-2 text-sm sm:text-base"
+                  className="flex items-center gap-2 text-sm sm:text-base cursor-pointer"
                   onClick={(e) => {
                     e.stopPropagation();
                     window.open(project.githubUrl, "_blank");
@@ -67,13 +67,13 @@ export default function ProjectsSection() {
               {project.liveUrl && (
                 <Button
                   variant="default"
-                  className="flex items-center gap-2 text-sm sm:text-base"
+                  className="flex items-center gap-2 text-sm sm:text-base cursor-pointer"
                   onClick={(e) => {
                     e.stopPropagation();
                     window.open(project.liveUrl, "_blank");
                   }}>
                   <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5" />
-                  Live Demo
+                  Link
                 </Button>
               )}
             </CardFooter>

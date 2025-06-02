@@ -20,8 +20,8 @@ export const projects: Project[] = [
     description: "EulerAI Company landing page",
     image: EulerAI,
     technologies: ["React", "TypeScript", "Tailwind CSS", "Vite"],
-    githubUrl: "https://github.com/yourusername/portfolio",
-    liveUrl: "https://yourportfolio.com",
+    githubUrl: "https://github.com/eulerai-au",
+    liveUrl: "https://www.eulerai.au/",
   },
   {
     id: "2",
@@ -30,8 +30,8 @@ export const projects: Project[] = [
       "An intelligent team matching platform for ICPC contestants, helping participants find compatible teammates based on skills, experience, and competition goals.",
     image: ICPC,
     technologies: ["Next.js", "TypeScript", "Algorithm", "Team Matching"],
-    githubUrl: "https://github.com/yourusername/ecommerce",
-    liveUrl: "https://your-ecommerce.com",
+    githubUrl: "https://github.com/Skyrim-line/ICPC-TEAM-BUILDER",
+    liveUrl: "https://icpcteambuilder.com/public/home",
   },
   {
     id: "3",
@@ -46,8 +46,8 @@ export const projects: Project[] = [
       "C++",
       "Graph Visualization",
     ],
-    githubUrl: "https://github.com/yourusername/task-manager",
-    liveUrl: "https://your-taskmanager.com",
+    githubUrl: "https://github.com/Skyrim-line/NovaGraph",
+    liveUrl: "https://skyrim-line.github.io/Novagraph-Deploy/",
   },
   {
     id: "4",
@@ -62,7 +62,7 @@ export const projects: Project[] = [
       "Real-time Analytics",
       "Game Design",
     ],
-    githubUrl: "https://github.com/yourusername/bigbrain",
-    liveUrl: "https://your-bigbrain.com",
+    githubUrl: "https://github.com/Skyrim-line/bigbrain-deploy",
+    liveUrl: "https://www.bigbraingame.dev/login",
   },
 ];
