@@ -9,6 +9,9 @@ export default function PhotoGallery() {
     doubleImages.forEach((img) => {
       const image = new Image();
       image.src = img.src;
+      image.loading = "eager";
+      image.decoding = "async";
+      image.fetchPriority = "high";
     });
   }, [doubleImages]);
 
@@ -25,7 +28,7 @@ export default function PhotoGallery() {
                 loading="eager"
                 decoding="async"
                 fetchPriority="high"
-                sizes="(max-width: 768px) 50vw, 25vw"
+                sizes="(max-width: 640px) 160px, (max-width: 1024px) 224px, 256px"
                 width={300}
                 height={200}
                 style={{
@@ -38,6 +41,8 @@ export default function PhotoGallery() {
                   WebkitBackfaceVisibility: "hidden",
                   WebkitPerspective: "1000px",
                   WebkitTransform: "translateZ(0)",
+                  position: "relative",
+                  zIndex: 1,
                 }}
               />
             </div>

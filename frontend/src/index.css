@@ -205,6 +205,8 @@
   transform: translateZ(0);
   backface-visibility: hidden;
   perspective: 1000px;
+  position: relative;
+  z-index: 1;
 }
 
 .logo-scroll {
@@ -233,6 +235,8 @@
   transform: translateZ(0);
   backface-visibility: hidden;
   perspective: 1000px;
+  position: relative;
+  z-index: 1;
 }
 
 .logo-scroll__wrapper {
@@ -247,6 +251,14 @@
   transform: translateZ(0);
   backface-visibility: hidden;
   perspective: 1000px;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .logo-scroll__wrapper {
+    animation-duration: calc(var(--duration) * 1.5);
+  }
 }
 
 .logo-scroll__wrapper:hover {
@@ -265,6 +277,8 @@
   transform: translateZ(0);
   backface-visibility: hidden;
   perspective: 1000px;
+  position: relative;
+  z-index: 1;
 }
 
 @media (max-width: 640px) {
@@ -296,6 +310,8 @@
   transform: translateZ(0);
   backface-visibility: hidden;
   perspective: 1000px;
+  position: relative;
+  z-index: 1;
 }
 
 .logo-item:hover img {
