@@ -93,7 +93,7 @@ export default function Home() {
           <p className="text-sm sm:text-lg italic">
             Fragments of life, frozen in time
           </p>
-          <p className="text-center text-sm text-gray-500 dark:text-gray-400 mt-6 animate-pulse">
+          <p className="text-center text-sm text-gray-500 dark:text-gray-400 animate-pulse">
             (Scroll down to view more...)
           </p>
         </div>

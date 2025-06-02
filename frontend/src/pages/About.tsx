@@ -11,7 +11,7 @@ export const About = () => {
   return (
     <div
       id="about"
-      className="flex flex-col lg:flex-row mt-12 min-h-screen items-center justify-center">
+      className="flex flex-col lg:flex-row min-h-screen items-center justify-center">
       <div className="w-full lg:w-1/2 p-2 md:p-4 flex flex-col items-center">
         <AvatarSection />
         <div className="mt-8 flex gap-4">
