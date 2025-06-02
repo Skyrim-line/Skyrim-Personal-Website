@@ -190,6 +190,7 @@
   font-display: swap;
 }
 
+/* 优化后的PhotoGallery样式 - 解决移动端闪烁问题 */
 .logo-container {
   --gap: 1rem;
   --duration: 60s;
@@ -198,15 +199,10 @@
   overflow: hidden;
   max-width: 100vw;
   margin-top: 3rem;
-  will-change: transform;
-  -webkit-transform: translateZ(0);
-  -webkit-backface-visibility: hidden;
-  -webkit-perspective: 1000px;
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  perspective: 1000px;
+  will-change: auto;
+  transform: translate3d(0, 0, 0);
   position: relative;
-  z-index: 1;
+  isolation: isolate;
 }
 
 .logo-scroll {
@@ -214,29 +210,22 @@
   overflow: hidden;
   -webkit-user-select: none;
   user-select: none;
-  -webkit-mask-image: linear-gradient(
-    to right,
-    rgba(0, 0, 0, 0),
-    rgba(0, 0, 0, 1) 20%,
-    rgba(0, 0, 0, 1) 80%,
-    rgba(0, 0, 0, 0)
-  );
   mask-image: linear-gradient(
     to right,
-    rgba(0, 0, 0, 0),
-    rgba(0, 0, 0, 1) 20%,
-    rgba(0, 0, 0, 1) 80%,
-    rgba(0, 0, 0, 0)
+    transparent 0%,
+    black 15%,
+    black 85%,
+    transparent 100%
   );
-  will-change: transform;
-  -webkit-transform: translateZ(0);
-  -webkit-backface-visibility: hidden;
-  -webkit-perspective: 1000px;
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  perspective: 1000px;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 15%,
+    black 85%,
+    transparent 100%
+  );
+  transform: translate3d(0, 0, 0);
   position: relative;
-  z-index: 1;
 }
 
 .logo-scroll__wrapper {
@@ -245,40 +234,31 @@
   min-width: 200%;
   animation: scroll var(--duration) linear infinite;
   will-change: transform;
-  -webkit-transform: translateZ(0);
-  -webkit-backface-visibility: hidden;
-  -webkit-perspective: 1000px;
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  perspective: 1000px;
-  position: relative;
-  z-index: 1;
+  transform: translate3d(0, 0, 0);
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
 }
 
+/* 移动端优化 */
 @media (max-width: 768px) {
+  .logo-container {
+    margin-top: 2rem;
+  }
+
   .logo-scroll__wrapper {
-    animation-duration: calc(var(--duration) * 1.5);
+    animation-duration: calc(var(--duration) * 1.2);
+    animation-timing-function: linear;
   }
 }
 
-.logo-scroll__wrapper:hover {
-  animation-play-state: paused;
-}
-
-/* Responsive logo-item sizes */
+/* 响应式logo尺寸 */
 .logo-item {
   flex-shrink: 0;
   overflow: hidden;
   border-radius: 0.5rem;
-  will-change: transform;
-  -webkit-transform: translateZ(0);
-  -webkit-backface-visibility: hidden;
-  -webkit-perspective: 1000px;
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  perspective: 1000px;
+  transform: translate3d(0, 0, 0);
   position: relative;
-  z-index: 1;
+  contain: layout style paint;
 }
 
 @media (max-width: 640px) {
@@ -287,12 +267,14 @@
     height: 96px;
   }
 }
+
 @media (min-width: 641px) and (max-width: 1024px) {
   .logo-item {
     width: 224px;
     height: 128px;
   }
 }
+
 @media (min-width: 1025px) {
   .logo-item {
     width: 256px;
@@ -300,30 +282,61 @@
   }
 }
 
-/* Hover zoom */
+/* 优化图片效果 */
 .logo-item img {
-  transition: transform 0.3s ease;
-  will-change: transform;
-  -webkit-transform: translateZ(0);
-  -webkit-backface-visibility: hidden;
-  -webkit-perspective: 1000px;
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  perspective: 1000px;
-  position: relative;
-  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+  transform: translate3d(0, 0, 0);
+  image-rendering: optimizeQuality;
+  -webkit-user-drag: none;
+  user-drag: none;
 }
 
-.logo-item:hover img {
-  transform: scale(1.05) translateZ(0);
+/* 只在非移动端启用hover效果 */
+@media (hover: hover) {
+  .logo-item img {
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .logo-item:hover img {
+    transform: translate3d(0, 0, 0) scale(1.05);
+  }
 }
 
-/* Keyframes */
+/* 优化滚动动画关键帧 */
 @keyframes scroll {
-  from {
+  0% {
     transform: translate3d(var(--scroll-start), 0, 0);
   }
-  to {
+  100% {
     transform: translate3d(var(--scroll-end), 0, 0);
   }
+}
+
+/* 针对iOS Safari的额外优化 */
+@supports (-webkit-touch-callout: none) {
+  .logo-container {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .logo-scroll__wrapper {
+    -webkit-transform: translate3d(0, 0, 0);
+    -webkit-backface-visibility: hidden;
+  }
+}
+
+/* 减少重绘的优化 */
+.logo-container,
+.logo-scroll,
+.logo-scroll__wrapper,
+.logo-item {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.no-drag {
+  -webkit-user-drag: none;
+  user-drag: none;
 }

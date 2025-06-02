@@ -1,11 +1,11 @@
-import img1 from "./photos/vivid.jpg";
-import img2 from "./photos/hangzhou.jpg";
-import img3 from "./photos/3.jpg";
-import img4 from "./photos/bondibeach.jpg";
-import img5 from "./photos/kunming.jpg";
-import img6 from "./photos/sydney-4.jpg";
-import img7 from "./photos/8.jpeg";
-import img8 from "./photos/2.jpg";
+import img1 from "../../assets/vivid.jpg";
+import img2 from "../../assets/hangzhou.jpg";
+import img3 from "../../assets/3.jpg";
+import img4 from "../../assets/bondibeach.jpg";
+import img5 from "../../assets/kunming.jpg";
+import img6 from "../../assets/sydney-4.jpg";
+import img7 from "../../assets/8.jpeg";
+import img8 from "../../assets/2.jpg";
 
 export const photoData = [
   {
@@ -46,7 +46,7 @@ export const photoData = [
     date: "6th April 2023",
     location: "Kunming, Yunnan, China",
     description:
-      "Known as the 'City of Eternal Spring,' Kunming in Yunnan Province offers a mild climate year-round and is a gateway to the region’s ethnic diversity and natural wonders.",
+      "Known as the 'City of Eternal Spring,' Kunming in Yunnan Province offers a mild climate year-round and is a gateway to the region's ethnic diversity and natural wonders.",
   },
   {
     src: img6,
@@ -54,7 +54,7 @@ export const photoData = [
     date: "16th Sep 2023",
     location: "North Sydney, Australia",
     description:
-      "A panoramic view of Sydney’s modern skyline featuring the Harbour Bridge and Opera House, capturing the vibrant energy of Australia's largest city.",
+      "A panoramic view of Sydney's modern skyline featuring the Harbour Bridge and Opera House, capturing the vibrant energy of Australia's largest city.",
   },
   {
     src: img7,
@@ -70,6 +70,6 @@ export const photoData = [
     date: "12th Sep 2023",
     location: "Royal Botanic Garden, Sydney, Australia",
     description:
-      "Macquarie Point offers stunning waterfront views of Sydney Harbour and is a peaceful spot to enjoy the city’s maritime charm.",
+      "Macquarie Point offers stunning waterfront views of Sydney Harbour and is a peaceful spot to enjoy the city's maritime charm.",
   },
 ];

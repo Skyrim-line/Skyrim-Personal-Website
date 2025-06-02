@@ -4,7 +4,7 @@ import tailwindcss from "@tailwindcss/vite";
 import path from "node:path";
 
 export default defineConfig({
-  base: "/Skyrim-Personal-Website/", // 👈 注意仓库名大小写必须匹配
+  base: "/Skyrim-Personal-Website/",
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
