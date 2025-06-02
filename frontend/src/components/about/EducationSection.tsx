@@ -9,13 +9,13 @@ export const EducationSection = () => (
       Education
     </h3>
     <div className="flex flex-col gap-6">
-      <div className="flex items-start gap-4 p-6 rounded-xl transition-all duration-300 transform bg-white/70 dark:bg-gray-800/60 hover:scale-[1.02] hover:shadow-xl hover:bg-indigo-50/80 dark:hover:bg-indigo-900/40">
+      <div className="flex flex-col sm:flex-row items-center gap-4 p-4 sm:p-6 rounded-xl transition-all duration-300 transform bg-white/70 dark:bg-gray-800/60 hover:scale-[1.02] hover:shadow-xl hover:bg-indigo-50/80 dark:hover:bg-indigo-900/40">
         <img
           src={UNSW}
           alt="UNSW"
-          className="w-15 h-15 rounded-full shadow-lg object-cover transition-all duration-300"
+          className="w-20 h-20 sm:w-15 sm:h-15 rounded-full shadow-lg object-cover transition-all duration-300"
         />
-        <div className="space-y-2">
+        <div className="space-y-2 text-left">
           <p className="text-xl font-semibold text-gray-800 dark:text-white">
             University of New South Wales
           </p>
@@ -30,13 +30,13 @@ export const EducationSection = () => (
 
       <Separator className="my-1" />
 
-      <div className="flex items-start gap-4 p-6 rounded-xl transition-all duration-300 transform bg-white/70 dark:bg-gray-800/60 hover:scale-[1.02] hover:shadow-xl hover:bg-indigo-50/80 dark:hover:bg-indigo-900/40">
+      <div className="flex flex-col sm:flex-row items-center gap-4 p-4 sm:p-6 rounded-xl transition-all duration-300 transform bg-white/70 dark:bg-gray-800/60 hover:scale-[1.02] hover:shadow-xl hover:bg-indigo-50/80 dark:hover:bg-indigo-900/40">
         <img
           src={HFUT}
           alt="HFUT"
-          className="w-15 h-15 rounded-full shadow-lg object-cover transition-all duration-300 dark:bg-white"
+          className="w-20 h-20 sm:w-15 sm:h-15 rounded-full shadow-lg object-cover transition-all duration-300 dark:bg-white"
         />
-        <div className="space-y-2">
+        <div className="space-y-2 text-left">
           <p className="text-xl font-semibold text-gray-800 dark:text-white">
             Hefei University of Technology
           </p>

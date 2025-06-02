@@ -8,11 +8,11 @@ export const ExperienceSection = () => (
       Experience
     </h3>
     <div className="flex flex-col gap-6">
-      <div className="flex items-center gap-6 p-6 rounded-xl transition-all duration-300 transform bg-white/70 dark:bg-gray-800/60 hover:scale-[1.02] hover:shadow-xl hover:bg-indigo-50/80 dark:hover:bg-indigo-900/40">
+      <div className="flex flex-col sm:flex-row items-center gap-6 p-6 rounded-xl transition-all duration-300 transform bg-white/70 dark:bg-gray-800/60 hover:scale-[1.02] hover:shadow-xl hover:bg-indigo-50/80 dark:hover:bg-indigo-900/40">
         <img
           src={EulerAI}
           alt="EulerAI"
-          className="w-20 h-20 object-contain transition-all duration-300 dark:hidden"
+          className="w-20 h-20 sm:w-15 sm:h-15 object-contain transition-all duration-300 dark:hidden"
         />
         <img
           src={Eulerdark}

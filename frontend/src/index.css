@@ -190,6 +190,73 @@
   font-display: swap;
 }
 
+@theme inline {
+  --animate-scroll: scroll var(--animation-duration, 40s)
+    var(--animation-direction, forwards) linear infinite;
+
+  @keyframes scroll {
+    to {
+      transform: translate(calc(-50% - 0.5rem));
+    }
+  }
+}
+
+/* 图片画廊样式 */
+.overflow-x-auto {
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-behavior: smooth;
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 5%,
+    black 95%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 5%,
+    black 95%,
+    transparent 100%
+  );
+}
+
+.overflow-x-auto::-webkit-scrollbar {
+  display: none;
+}
+
+.snap-x {
+  scroll-snap-type: x mandatory;
+}
+
+.snap-center {
+  scroll-snap-align: center;
+}
+
+/* 优化图片加载 */
+img {
+  -webkit-user-drag: none;
+  user-drag: none;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* 针对iOS Safari的额外优化 */
+@supports (-webkit-touch-callout: none) {
+  .overflow-x-auto {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* 移动端垂直布局样式 */
+@media (max-width: 767px) {
+  .aspect-[3/2] {
+    aspect-ratio: 3/2;
+  }
+}
+
 /* 优化后的PhotoGallery样式 - 解决移动端闪烁问题 */
 .logo-container {
   --gap: 1rem;
@@ -312,18 +379,6 @@
   }
   100% {
     transform: translate3d(var(--scroll-end), 0, 0);
-  }
-}
-
-/* 针对iOS Safari的额外优化 */
-@supports (-webkit-touch-callout: none) {
-  .logo-container {
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .logo-scroll__wrapper {
-    -webkit-transform: translate3d(0, 0, 0);
-    -webkit-backface-visibility: hidden;
   }
 }
 
