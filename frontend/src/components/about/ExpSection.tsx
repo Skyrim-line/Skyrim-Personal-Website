@@ -1,6 +1,6 @@
 // components/About/ContactSection.tsx
-import EulerAI from "@assets/Euler-footer.svg";
-import Eulerdark from "@assets/Euler-dark.svg";
+import EulerAI from "../../assets/EulerFooter.svg";
+import Eulerdark from "../../assets/EulerDark.svg";
 
 export const ExperienceSection = () => (
   <div className="space-y-6">

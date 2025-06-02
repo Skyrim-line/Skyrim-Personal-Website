@@ -1,7 +1,7 @@
 // components/About/EducationSection.tsx
 import { Separator } from "@/components/ui/separator";
-import UNSW from "@assets/unsw.png";
-import HFUT from "@assets/HFUT.svg";
+import UNSW from "../../assets/unsw.png";
+import HFUT from "../../assets/HFUT.svg";
 
 export const EducationSection = () => (
   <div className="space-y-6">
