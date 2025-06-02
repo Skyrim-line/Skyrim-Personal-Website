@@ -1,8 +1,16 @@
-import { useMemo } from "react";
+import { useMemo, useEffect } from "react";
 import { photoData } from "./PhotoData";
 
 export default function PhotoGallery() {
   const doubleImages = useMemo(() => [...photoData, ...photoData], []);
+
+  // 预加载图片
+  useEffect(() => {
+    doubleImages.forEach((img) => {
+      const image = new Image();
+      image.src = img.src;
+    });
+  }, [doubleImages]);
 
   return (
     <div className="logo-container">
@@ -25,6 +33,11 @@ export default function PhotoGallery() {
                   containIntrinsicSize: "300px 200px",
                   willChange: "transform",
                   transform: "translateZ(0)",
+                  backfaceVisibility: "hidden",
+                  perspective: "1000px",
+                  WebkitBackfaceVisibility: "hidden",
+                  WebkitPerspective: "1000px",
+                  WebkitTransform: "translateZ(0)",
                 }}
               />
             </div>
