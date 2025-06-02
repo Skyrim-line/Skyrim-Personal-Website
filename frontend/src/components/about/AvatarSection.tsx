@@ -1,4 +1,4 @@
-import Skyrim from "../../assets/sky3.png";
+import Skyrim from "@assets/avatar.png";
 
 export const AvatarSection = () => (
   <>
