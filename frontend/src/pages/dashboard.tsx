@@ -24,7 +24,7 @@ export default function Home() {
         id="hero"
         className="pt-[150px] pb-0 px-4 sm:px-8 lg:px-14 w-full xl:w-[90%] mx-auto">
         {/* Hero & Gallery Section */}
-        <section className="min-h-screen flex flex-col justify-center">
+        <section className="flex flex-col justify-center">
           <div
             className={`flex flex-col mb-4 lg:flex-row items-center justify-between gap-8 md:gap-12 ${
               isVisible
