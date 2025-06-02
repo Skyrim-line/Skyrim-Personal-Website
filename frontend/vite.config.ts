@@ -4,7 +4,7 @@ import tailwindcss from "@tailwindcss/vite";
 import path from "node:path";
 
 export default defineConfig({
-  base: "/Skyrim-Personal-Website/",
+  // base: "/Skyrim-Personal-Website/",
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {

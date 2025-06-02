@@ -86,7 +86,7 @@ export const InfiniteMovingCards = ({
         )}>
         {items.map((item, idx) => (
           <li
-            className="relative w-[350px] max-w-full shrink-0 rounded-2xl px-1 py-1 md:w-[450px]"
+            className="relative w-[350px] max-w-full shrink-0 rounded-2xl px-1 py-1 md:w-[450px] content-visibility-auto [contain-intrinsic-size:450px_200px]"
             key={item.name}>
             {item.image && (
               <div className="relative w-full h-[200px] overflow-hidden rounded-lg">
@@ -95,6 +95,7 @@ export const InfiniteMovingCards = ({
                   alt={item.name}
                   className="w-full h-full object-cover"
                   loading={idx < 6 ? "eager" : "lazy"}
+                  decoding="async"
                 />
               </div>
             )}
