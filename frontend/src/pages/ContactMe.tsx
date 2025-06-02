@@ -3,7 +3,7 @@ import LinkedinIcon from "../assets/linkedin.svg";
 import Gmail from "../assets/gmail.svg";
 import Wechat from "../assets/wechat.svg";
 import INS from "../assets/ins.svg";
-import QRCode from "../assets/theskyrim.jpg";
+import QRCode from "../assets/QR.jpg";
 import {
   Popover,
   PopoverTrigger,
