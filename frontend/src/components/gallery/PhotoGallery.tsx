@@ -13,7 +13,7 @@ export default function PhotoGallery() {
   }));
 
   return (
-    <div className="w-full">
+    <div className="w-full overflow-y-hidden">
       <div className="rounded-md flex flex-col antialiased dark:bg-grid-white/[0.05] items-center justify-center relative overflow-hidden">
         <InfiniteMovingCards
           items={items}
