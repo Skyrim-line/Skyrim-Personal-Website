@@ -6,6 +6,7 @@ import ProjectsSection from "./ProjectsSection";
 import { About } from "./About";
 import ContactMe from "./ContactMe";
 import Footer from "@/components/layout/Footer";
+import { motion } from "framer-motion";
 
 export default function Home() {
   const [isVisible, setIsVisible] = useState(false);
@@ -108,19 +109,36 @@ export default function Home() {
         </section>
 
         {/* About Section */}
-        <section className="min-h-screen flex flex-col justify-center py-20">
+        <motion.section
+          className="min-h-screen flex flex-col justify-center py-20"
+          initial={{ opacity: 0, y: 40, scale: 0.95 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.8, ease: "easeInOut" }}>
           <About />
-        </section>
+        </motion.section>
 
         {/* Projects Section */}
-        <section className="min-h-screen flex flex-col justify-center py-20">
+        <motion.section
+          id="projects"
+          className="min-h-screen flex flex-col justify-center py-20"
+          initial={{ opacity: 0, y: 40, scale: 0.95 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.8, ease: "easeInOut" }}>
           <ProjectsSection />
-        </section>
+        </motion.section>
 
         {/* Contact Section */}
-        <section className="min-h-screen flex flex-col justify-center py-20">
+        <motion.section
+          id="contact"
+          className="min-h-screen flex flex-col justify-center py-20"
+          initial={{ opacity: 0, y: 40, scale: 0.95 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.8, ease: "easeInOut" }}>
           <ContactMe />
-        </section>
+        </motion.section>
 
         <Footer />
       </main>

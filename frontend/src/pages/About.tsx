@@ -1,4 +1,3 @@
-// components/About/About.tsx
 import { useState } from "react";
 import { ExperienceSection } from "../components/about/ExpSection";
 import { EducationSection } from "../components/about/EducationSection";
