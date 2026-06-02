@@ -1,6 +1,6 @@
 import { HoverLinkButton } from "./HoverLinkButton";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -16,6 +16,9 @@ function getSystemTheme() {
 }
 
 export default function Navbar() {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const isCVPage = location.pathname === "/cv";
   const [scrolled, setScrolled] = useState(false);
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem("vite-ui-theme") || "system";
@@ -50,9 +53,10 @@ export default function Navbar() {
   }, [theme]);
 
   const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+    if (location.pathname !== "/") {
+      navigate("/", { state: { scrollTo: id } });
+    } else {
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -98,6 +102,13 @@ export default function Navbar() {
         <HoverLinkButton to="#about">About</HoverLinkButton>
         <HoverLinkButton to="#project">Project</HoverLinkButton>
         <HoverLinkButton to="#contact">Contact</HoverLinkButton>
+        <Link
+          to="/cv"
+          className={`inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] text-primary underline-offset-4 hover:underline h-9 px-4 py-2 text-lg transition-transform duration-300 ease-in-out hover:scale-110 ${
+            isCVPage ? "underline text-indigo-600 dark:text-indigo-400" : ""
+          }`}>
+          CV
+        </Link>
       </nav>
 
       <div className="flex items-center gap-3">
@@ -149,6 +160,14 @@ export default function Navbar() {
                 className="w-full cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800"
                 onClick={() => scrollToSection("contact")}>
                 Contact
+              </Button>
+              <Button
+                variant="ghost"
+                className={`w-full cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 ${
+                  isCVPage ? "text-indigo-600 dark:text-indigo-400 font-semibold" : ""
+                }`}
+                onClick={() => navigate("/cv")}>
+                CV
               </Button>
             </div>
           </SheetContent>

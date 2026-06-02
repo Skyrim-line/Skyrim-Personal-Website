@@ -1,6 +1,7 @@
 import Navbar from "@/components/layout/Header";
 import Skyrim from "../assets/Skyrim2.jpg";
 import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import PhotoGallery from "../components/gallery/PhotoGallery";
 import ProjectsSection from "./ProjectsSection";
 import { About } from "./About";
@@ -9,6 +10,7 @@ import Footer from "@/components/layout/Footer";
 
 export default function Home() {
   const [isVisible, setIsVisible] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -16,6 +18,16 @@ export default function Home() {
     }, 300);
     return () => clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    const scrollTo = (location.state as { scrollTo?: string } | null)?.scrollTo;
+    if (scrollTo) {
+      const el = document.getElementById(scrollTo);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, [location.state]);
 
   return (
     <div>

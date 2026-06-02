@@ -1,5 +1,5 @@
 // components/About/ContactSection.tsx
-import EulerAI from "../../assets/EulerFooter.svg";
+import EigenflowAI from "../../assets/eigenflow.svg";
 import Eulerdark from "../../assets/EulerDark.svg";
 
 export const ExperienceSection = () => (
@@ -10,21 +10,21 @@ export const ExperienceSection = () => (
     <div className="flex flex-col gap-6">
       <div className="flex flex-col sm:flex-row items-center gap-6 p-6 rounded-xl transition-all duration-300 transform bg-white/70 dark:bg-gray-800/60 hover:scale-[1.02] hover:shadow-xl hover:bg-indigo-50/80 dark:hover:bg-indigo-900/40">
         <img
-          src={EulerAI}
-          alt="EulerAI"
-          className="w-20 h-20 sm:w-15 sm:h-15 object-contain transition-all duration-300 dark:hidden"
+          src={EigenflowAI}
+          alt="EigenflowAI"
+          className="w-20 h-20 object-contain transition-all duration-300 dark:hidden"
         />
         <img
-          src={Eulerdark}
+          src={EigenflowAI}
           alt="EulerAI Dark"
           className="w-20 h-20 object-contain transition-all duration-300 hidden dark:block"
         />
         <div className="space-y-2">
           <p className="text-xl font-semibold text-gray-800 dark:text-white">
-            EulerAI Company
+            Eigenflow AI
           </p>
           <p className="text-md text-gray-600 dark:text-gray-400">
-            Software Engineer - Frontend Developer
+            Software Engineer - Full Stack Developer
           </p>
           <p className="text-sm text-gray-500 dark:text-gray-400">
             Mar 2025 - Present

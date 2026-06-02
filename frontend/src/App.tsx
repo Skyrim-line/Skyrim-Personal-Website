@@ -1,5 +1,6 @@
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "@/pages/dashboard";
+import CV from "@/pages/CV";
 import { ThemeProvider } from "@/components/theme/themeProvider";
 
 function App() {
@@ -8,6 +9,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/cv" element={<CV />} />
         </Routes>
       </Router>
     </ThemeProvider>
