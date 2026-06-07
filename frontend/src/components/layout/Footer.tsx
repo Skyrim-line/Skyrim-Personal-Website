@@ -10,7 +10,7 @@ export default function Footer() {
           </div>
           <div className="flex items-center gap-4">
             <a
-              href="mailto:ahandsomeskyrim@gmail.com"
+              href="mailto:contact@skyrimwu.me"
               className="text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
               aria-label="Send me an email">
               <Mail className="w-5 h-5" />

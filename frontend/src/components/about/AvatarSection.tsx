@@ -1,4 +1,4 @@
-import Skyrim from "../../assets/avatar.png";
+import Skyrim from "../../assets/optimized/avatar-640.jpg";
 
 export const AvatarSection = () => (
   <>
@@ -10,8 +10,8 @@ export const AvatarSection = () => (
       decoding="async"
       fetchPriority="high"
       sizes="(max-width: 768px) 80vw, 320px"
-      width={320}
-      height={320}
+      width={640}
+      height={426}
       style={{
         contentVisibility: "auto",
         containIntrinsicSize: "320px 320px",

@@ -1,6 +1,6 @@
 // components/About/ContactSection.tsx
 import EigenflowAI from "../../assets/eigenflow.svg";
-import Eulerdark from "../../assets/EulerDark.svg";
+// import Eulerdark from "../../assets/EulerDark.svg";
 
 export const ExperienceSection = () => (
   <div className="space-y-6">
@@ -21,10 +21,10 @@ export const ExperienceSection = () => (
         />
         <div className="space-y-2">
           <p className="text-xl font-semibold text-gray-800 dark:text-white">
-            Eigenflow AI
+            EigenFlow AI
           </p>
           <p className="text-md text-gray-600 dark:text-gray-400">
-            Software Engineer - Full Stack Developer
+            Technical Lead - Full Stack Developer
           </p>
           <p className="text-sm text-gray-500 dark:text-gray-400">
             Mar 2025 - Present

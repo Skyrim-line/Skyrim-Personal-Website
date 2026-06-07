@@ -1,15 +1,17 @@
-import img1 from "../../assets/vivid.jpg";
-import img2 from "../../assets/hangzhou.jpg";
-import img3 from "../../assets/3.jpg";
-import img4 from "../../assets/bondibeach.jpg";
-import img5 from "../../assets/kunming.jpg";
-import img6 from "../../assets/sydney-4.jpg";
-import img7 from "../../assets/8.jpeg";
-import img8 from "../../assets/2.jpg";
+import img1 from "../../assets/optimized/gallery-vivid-960.jpg";
+import img2 from "../../assets/optimized/gallery-hangzhou-960.jpg";
+import img3 from "../../assets/optimized/gallery-bondi-rocks-960.jpg";
+import img4 from "../../assets/optimized/gallery-bondi-beach-960.jpg";
+import img5 from "../../assets/optimized/gallery-kunming-960.jpg";
+import img6 from "../../assets/optimized/gallery-north-sydney-960.jpg";
+import img7 from "../../assets/optimized/gallery-sydney-night-960.jpg";
+import img8 from "../../assets/optimized/gallery-macquarie-point-720.jpg";
 
 export const photoData = [
   {
     src: img1,
+    width: 960,
+    height: 641,
     info: "Sydney Vivid Show 2023",
     date: "26th May 2023",
     location: "Sydney, Australia",
@@ -18,6 +20,8 @@ export const photoData = [
   },
   {
     src: img2,
+    width: 960,
+    height: 641,
     info: "Xihu, Hangzhou",
     date: "1st May 2023",
     location: "Hangzhou, China",
@@ -26,6 +30,8 @@ export const photoData = [
   },
   {
     src: img3,
+    width: 960,
+    height: 640,
     info: "Bondi Rocks",
     date: "15th June 2024",
     location: "Bondi Beach, Sydney, Australia",
@@ -34,6 +40,8 @@ export const photoData = [
   },
   {
     src: img4,
+    width: 960,
+    height: 640,
     info: "Bondi Beach",
     date: "15th June 2024",
     location: "Bondi Beach, Sydney, Australia",
@@ -42,6 +50,8 @@ export const photoData = [
   },
   {
     src: img5,
+    width: 960,
+    height: 641,
     info: "Dian Chi Night View",
     date: "6th April 2023",
     location: "Kunming, Yunnan, China",
@@ -50,6 +60,8 @@ export const photoData = [
   },
   {
     src: img6,
+    width: 960,
+    height: 540,
     info: "North Sydney City View",
     date: "16th Sep 2023",
     location: "North Sydney, Australia",
@@ -58,6 +70,8 @@ export const photoData = [
   },
   {
     src: img7,
+    width: 960,
+    height: 540,
     info: "Sydney Night View",
     date: "23th June 2023",
     location: "UNSW Village Sydney, Australia",
@@ -66,6 +80,8 @@ export const photoData = [
   },
   {
     src: img8,
+    width: 720,
+    height: 919,
     info: "Macquarie Point",
     date: "12th Sep 2023",
     location: "Royal Botanic Garden, Sydney, Australia",

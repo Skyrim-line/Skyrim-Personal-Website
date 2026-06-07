@@ -1,5 +1,5 @@
 import Navbar from "@/components/layout/Header";
-import Skyrim from "../assets/Skyrim2.jpg";
+import Skyrim from "../assets/optimized/hero-1280.jpg";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import PhotoGallery from "../components/gallery/PhotoGallery";
@@ -95,8 +95,8 @@ export default function Home() {
                   fetchPriority="high"
                   className="relative rounded-xl shadow-xl w-full h-auto object-cover max-h-[600px]"
                   sizes="(max-width: 768px) 100vw, 50vw"
-                  width={800}
-                  height={600}
+                  width={1280}
+                  height={720}
                   style={{
                     contentVisibility: "auto",
                     containIntrinsicSize: "800px 600px",
