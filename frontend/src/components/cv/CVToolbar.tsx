@@ -3,6 +3,7 @@ import { Download, Share2, Eye, Pencil } from "lucide-react";
 import { toast } from "sonner";
 
 interface CVToolbarProps {
+  canEdit: boolean;
   mode: "edit" | "preview";
   onModeChange: (mode: "edit" | "preview") => void;
   onDownloadPDF: () => void;
@@ -10,6 +11,7 @@ interface CVToolbarProps {
 }
 
 export function CVToolbar({
+  canEdit,
   mode,
   onModeChange,
   onDownloadPDF,
@@ -32,24 +34,26 @@ export function CVToolbar({
 
   return (
     <div className="flex items-center justify-end py-2 gap-2">
-      <div className="flex items-center rounded-md border bg-gray-50 dark:bg-gray-800 p-0.5 gap-0.5">
-        <Button
-          variant={mode === "edit" ? "default" : "ghost"}
-          size="sm"
-          onClick={() => onModeChange("edit")}
-          className="h-7 px-3 text-xs gap-1.5">
-          <Pencil className="w-3.5 h-3.5" />
-          Edit
-        </Button>
-        <Button
-          variant={mode === "preview" ? "default" : "ghost"}
-          size="sm"
-          onClick={() => onModeChange("preview")}
-          className="h-7 px-3 text-xs gap-1.5">
-          <Eye className="w-3.5 h-3.5" />
-          Preview
-        </Button>
-      </div>
+      {canEdit && (
+        <div className="flex items-center rounded-md border bg-gray-50 dark:bg-gray-800 p-0.5 gap-0.5">
+          <Button
+            variant={mode === "edit" ? "default" : "ghost"}
+            size="sm"
+            onClick={() => onModeChange("edit")}
+            className="h-7 px-3 text-xs gap-1.5">
+            <Pencil className="w-3.5 h-3.5" />
+            Edit
+          </Button>
+          <Button
+            variant={mode === "preview" ? "default" : "ghost"}
+            size="sm"
+            onClick={() => onModeChange("preview")}
+            className="h-7 px-3 text-xs gap-1.5">
+            <Eye className="w-3.5 h-3.5" />
+            Preview
+          </Button>
+        </div>
+      )}
 
       <Button
         variant="outline"

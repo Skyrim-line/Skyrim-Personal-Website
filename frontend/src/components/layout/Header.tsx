@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { useTheme } from "@/components/theme/themeProvider";
 
 function getSystemTheme() {
   if (
@@ -20,10 +21,8 @@ export default function Navbar() {
   const navigate = useNavigate();
   const isCVPage = location.pathname === "/cv";
   const [scrolled, setScrolled] = useState(false);
-  const [theme, setTheme] = useState(() => {
-    return localStorage.getItem("vite-ui-theme") || "system";
-  });
   const [mounted, setMounted] = useState(false);
+  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     setMounted(true);
@@ -39,18 +38,6 @@ export default function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [scrolled]);
-
-  // 监听系统主题变化
-  useEffect(() => {
-    const media = window.matchMedia("(prefers-color-scheme: dark)");
-    const handler = () => {
-      if (theme === "system") {
-        setTheme("system"); // 触发重渲染
-      }
-    };
-    media.addEventListener("change", handler);
-    return () => media.removeEventListener("change", handler);
-  }, [theme]);
 
   const scrollToSection = (id: string) => {
     if (location.pathname !== "/") {
@@ -68,19 +55,8 @@ export default function Navbar() {
     currentTheme = theme as "dark" | "light";
   }
 
-  // 切换主题
   const toggleTheme = () => {
-    let nextTheme: "dark" | "light";
-    if (currentTheme === "dark") {
-      nextTheme = "light";
-    } else {
-      nextTheme = "dark";
-    }
-    setTheme(nextTheme);
-    localStorage.setItem("vite-ui-theme", nextTheme);
-    const root = window.document.documentElement;
-    root.classList.remove("light", "dark");
-    root.classList.add(nextTheme);
+    setTheme(currentTheme === "dark" ? "light" : "dark");
   };
 
   return (

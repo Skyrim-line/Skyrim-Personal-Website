@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { flushSync } from "react-dom";
 import { useLocation } from "react-router-dom";
 import MDEditor from "@uiw/react-md-editor";
@@ -83,7 +83,11 @@ Hong Kong University of Science and Technology (HKUST)
 
 const STORAGE_KEY = "cv-content";
 
-function loadInitialMarkdown(search: string): string {
+function loadInitialMarkdown(search: string, canEdit: boolean): string {
+  if (!canEdit) {
+    return DEFAULT_CV;
+  }
+
   try {
     const params = new URLSearchParams(search);
     const encoded = params.get("md");
@@ -101,27 +105,32 @@ function loadInitialMarkdown(search: string): string {
 export default function CV() {
   const location = useLocation();
   const { theme } = useTheme();
-  const colorMode =
-    theme === "system"
-      ? window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? "dark"
-        : "light"
-      : theme;
+  const canEdit = import.meta.env.DEV;
+  const colorMode = useMemo(() => {
+    if (theme === "system") {
+      return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    }
+    return theme;
+  }, [theme]);
   const [markdown, setMarkdown] = useState<string>(() =>
-    loadInitialMarkdown(location.search),
+    loadInitialMarkdown(location.search, canEdit),
   );
-  const [mode, setMode] = useState<"edit" | "preview">("edit");
+  const [mode, setMode] = useState<"edit" | "preview">(canEdit ? "edit" : "preview");
   const previewRef = useRef<HTMLDivElement>(null);
   const saveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const handleMarkdownChange = useCallback((value: string | undefined) => {
+    if (!canEdit) {
+      return;
+    }
+
     const next = value ?? "";
     setMarkdown(next);
     if (saveTimerRef.current) clearTimeout(saveTimerRef.current);
     saveTimerRef.current = setTimeout(() => {
       localStorage.setItem(STORAGE_KEY, next);
     }, 500);
-  }, []);
+  }, [canEdit]);
 
   useEffect(() => {
     return () => {
@@ -145,6 +154,7 @@ export default function CV() {
           CV / Resume
         </h2>
         <CVToolbar
+          canEdit={canEdit}
           mode={mode}
           onModeChange={setMode}
           onDownloadPDF={handleDownloadPDF}
@@ -153,7 +163,7 @@ export default function CV() {
       </div>
 
       <main className="flex-1 overflow-auto py-6 px-4">
-        <div className={mode === "edit" ? "block" : "hidden"}>
+        <div className={canEdit && mode === "edit" ? "block" : "hidden"}>
           <div className="max-w-5xl mx-auto" data-color-mode={colorMode}>
             <MDEditor
               value={markdown}
