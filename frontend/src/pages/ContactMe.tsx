@@ -2,7 +2,7 @@ import GithubIcon from "../assets/github.svg";
 import LinkedinIcon from "../assets/linkedin.svg";
 import Gmail from "../assets/gmail.svg";
 import Wechat from "../assets/wechat.svg";
-import INS from "../assets/ins.svg";
+// import INS from "../assets/ins.svg";
 import VisiualChina from "../assets/500px.svg";
 import QRCode from "../assets/QR.jpg";
 import {
@@ -25,9 +25,9 @@ export default function ContactMe() {
           <div className="text-left mb-8">
             <h3 className="text-3xl font-semibold mb-4">Let's Connect!</h3>
             <p className="text-lg md:text-xl leading-relaxed text-gray-600 dark:text-gray-300 mb-4">
-              I've recently graduated and am currently seeking job
-              opportunities. I'm always open to discussing new projects,
-              creative ideas, or opportunities to be part of your visions.
+              I'm currently working full-time as a software engineer, and I'm
+              always happy to connect about interesting projects, creative
+              ideas, or potential collaborations.
             </p>
           </div>
           <div className="flex flex-wrap gap-4">
@@ -62,7 +62,7 @@ export default function ContactMe() {
                 <p className="text-sm text-gray-700 dark:text-gray-300 mb-2 leading-relaxed">
                   Contact with me through my email:
                   <span className="font-semibold text-blue-600 dark:text-blue-400 underline block">
-                    ahandsomeskyrim@gmail.com
+                    contact@skyrimwu.me
                   </span>
                 </p>
               </PopoverContent>
@@ -92,13 +92,13 @@ export default function ContactMe() {
                 />
               </PopoverContent>
             </Popover>
-            <a
+            {/* <a
               href="https://www.instagram.com/skyrim_sc/"
               target="_blank"
               rel="noopener noreferrer"
               className="p-3 rounded-full !bg-white dark:!bg-gray-800 shadow-md hover:shadow-lg transition-all hover:scale-105">
               <img src={INS} alt="Instagram" className="w-12 h-12" />
-            </a>
+            </a> */}
             <a
               href="https://500px.com.cn/skyrim"
               target="_blank"
