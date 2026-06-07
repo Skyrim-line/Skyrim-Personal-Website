@@ -16,7 +16,7 @@ export default function Footer() {
               <Mail className="w-5 h-5" />
             </a>
             <a
-              href="https://github.com/Skyrim-line"
+              href="https://github.com/Skyrim-Wu"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"

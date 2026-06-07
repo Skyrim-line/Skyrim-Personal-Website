@@ -2,7 +2,7 @@
   "name": "frontend",
   "private": true,
   "version": "1.0.0",
-  "homepage": "https://skyrim-line.github.io/Skyrim-Personal-Website",
+  "homepage": "https://skyrim-wu.github.io/Skyrim-Personal-Website",
   "type": "module",
   "scripts": {
     "dev": "vite",
