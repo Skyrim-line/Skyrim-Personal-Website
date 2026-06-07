@@ -36,12 +36,13 @@ Full-stack engineer with a passion for building elegant, performant web applicat
 
 ## Projects
 
-### EulerAI — Architecture Platform · [Live](https://your-link-here)
-AI-powered platform for the architecture and construction industry, built and deployed end-to-end as sole engineer.
+### EulerAI — Architecture Platform · [Live](https://construction.eulerai.au/)
+AI-powered platform for the architecture and construction industry, delivered as a full-stack engineer and team lead.
 
-- Architected and delivered the complete full-stack application (frontend, backend, database) independently
-- Owned and configured the entire CI/CD pipeline through to production deployment
-- Shipped a live product serving real users in the architecture and construction vertical
+- Led a 4-person engineering team through development and production launch
+- Built the RAG-powered backend retrieval system aligned to Australian ACC standards
+- Owned deployment and release delivery through to production
+- Designed and implemented the entire frontend UI and interaction experience
 
 ### EulerAI — Official Website
 Corporate marketing and product site for EulerAI, designed, built, and maintained independently.
@@ -63,7 +64,9 @@ Commercial edtech web platform for a Hong Kong-based educational organisation, c
 
 **Frontend:** React · Vite · Tailwind CSS · Framer Motion · Radix UI
 
-**Backend:** Node.js · REST APIs
+**Backend:** Node.js · REST APIs · RAG Systems · Retrieval Pipelines
+
+**Cloud & Infrastructure:** AWS · Kubernetes · Cloudflare · CI/CD · Production Deployment
 
 **Tools:** Git · GitHub · VS Code · Figma
 
