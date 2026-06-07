@@ -68,10 +68,10 @@ export default function ProjectsSection() {
                       )}
                     </div>
                   </div>
-                  <p className="text-left text-base/6 text-neutral-200 mb-1 sm:mb-6 max-w-4xl">
+                  <p className="text-left text-sm/5 sm:text-base/6 text-neutral-200 mb-1 sm:mb-6 max-w-4xl">
                     {project.description}
                   </p>
-                  <div className="flex flex-wrap gap-2 mb-6 max-w-full lg:max-w-xs">
+                  <div className="hidden sm:flex flex-wrap gap-2 mb-6 max-w-full lg:max-w-xs">
                     {project.technologies.map((tech) => (
                       <span
                         key={tech}
