@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Download, Share2, Eye, Pencil } from "lucide-react";
+import { Download, Share2, Eye, Pencil, Save } from "lucide-react";
 import { toast } from "sonner";
 
 interface CVToolbarProps {
@@ -7,6 +7,8 @@ interface CVToolbarProps {
   mode: "edit" | "preview";
   onModeChange: (mode: "edit" | "preview") => void;
   onDownloadPDF: () => void;
+  onSave?: () => Promise<void>;
+  isSaving?: boolean;
   markdown: string;
 }
 
@@ -15,6 +17,8 @@ export function CVToolbar({
   mode,
   onModeChange,
   onDownloadPDF,
+  onSave,
+  isSaving = false,
   markdown,
 }: CVToolbarProps) {
   const handleShare = async () => {
@@ -63,6 +67,18 @@ export function CVToolbar({
         <Share2 className="w-3.5 h-3.5" />
         Share
       </Button>
+
+      {canEdit && onSave && (
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => void onSave()}
+          disabled={isSaving}
+          className="h-8 px-3 text-xs gap-1.5">
+          <Save className="w-3.5 h-3.5" />
+          {isSaving ? "Saving..." : "Save"}
+        </Button>
+      )}
 
       <Button
         size="sm"

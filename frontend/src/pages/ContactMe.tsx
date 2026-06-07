@@ -32,7 +32,7 @@ export default function ContactMe() {
           </div>
           <div className="flex flex-wrap gap-4">
             <a
-              href="https://github.com/Skyrim-line"
+              href="https://github.com/Skyrim-Wu"
               target="_blank"
               rel="noopener noreferrer"
               className="p-3 rounded-full !bg-white dark:!bg-gray-800 shadow-md hover:shadow-lg transition-all hover:scale-105">

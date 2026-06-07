@@ -4,85 +4,11 @@ import { useLocation } from "react-router-dom";
 import MDEditor from "@uiw/react-md-editor";
 import { CVPreview } from "@/components/cv/CVPreview";
 import { CVToolbar } from "@/components/cv/CVToolbar";
+import DEFAULT_CV from "@/data/defaultCv.md?raw";
 import { useTheme } from "@/components/theme/themeProvider";
 import Navbar from "@/components/layout/Header";
 import { Toaster } from "sonner";
-
-const DEFAULT_CV = `# Simin Wu
-
-**Software Engineer · Full Stack Developer**
-
-sm.wu@eigenflow.ai · GitHub: Skyrim-line · Hong Kong
-
----
-
-## Summary
-
-Full-stack engineer with a passion for building elegant, performant web applications and AI-powered products. Currently building the future of intelligent workflows at EigenFlow AI.
-
----
-
-## Experience
-
-### Tech Lead — Full Stack Developer
-**EigenFlow AI** · Mar 2025 – Present
-
-- Led a 5-person engineering team end-to-end, owning technical direction, code reviews, sprint planning, and delivery milestones for a live B2B SaaS product in active commercial use
-- Sole owner of the entire frontend — architected, built, and shipped the production UI from zero without external contribution
-- Hands-on contributor across the full stack; actively co-developed backend services alongside the team, not a passive manager
-- Designed and owned the complete CI/CD pipeline and deployment workflow, taking the product from development to live commercial use
-
----
-
-## Projects
-
-### EulerAI — Architecture Platform · [Live](https://construction.eulerai.au/)
-AI-powered platform for the architecture and construction industry, delivered as a full-stack engineer and team lead.
-
-- Led a 4-person engineering team through development and production launch
-- Built the RAG-powered backend retrieval system aligned to Australian ACC standards
-- Owned deployment and release delivery through to production
-- Designed and implemented the entire frontend UI and interaction experience
-
-### EulerAI — Official Website
-Corporate marketing and product site for EulerAI, designed, built, and maintained independently.
-
-- Architected and developed both frontend and backend without external engineering support
-- Owned all CI/CD setup and production infrastructure, shipping to a live commercial environment
-
-### TheVineHK · [Live](https://your-link-here)
-Commercial edtech web platform for a Hong Kong-based educational organisation, conceived and built solo.
-
-- Solely owned UI/UX design and frontend development from concept through production launch
-- Shipped a polished, production-ready product in active commercial use supporting real students and educators
-
----
-
-## Skills
-
-**Languages:** TypeScript · JavaScript · Python · HTML · CSS
-
-**Frontend:** React · Vite · Tailwind CSS · Framer Motion · Radix UI
-
-**Backend:** Node.js · REST APIs · RAG Systems · Retrieval Pipelines
-
-**Cloud & Infrastructure:** AWS · Kubernetes · Cloudflare · CI/CD · Production Deployment
-
-**Tools:** Git · GitHub · VS Code · Figma
-
----
-
-## Education
-
-Hong Kong University of Science and Technology (HKUST)
-
----
-
-## Links
-
-- GitHub: [github.com/Skyrim-line](https://github.com/Skyrim-line)
-- Email: sm.wu@eigenflow.ai
-`;
+import { toast } from "sonner";
 
 const STORAGE_KEY = "cv-content";
 
@@ -119,6 +45,7 @@ export default function CV() {
     loadInitialMarkdown(location.search, canEdit),
   );
   const [mode, setMode] = useState<"edit" | "preview">(canEdit ? "edit" : "preview");
+  const [isSaving, setIsSaving] = useState(false);
   const previewRef = useRef<HTMLDivElement>(null);
   const saveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -146,6 +73,56 @@ export default function CV() {
     window.print();
   }, []);
 
+  const handleSaveToFile = useCallback(async () => {
+    if (!canEdit) {
+      return;
+    }
+
+    setIsSaving(true);
+    try {
+      const response = await fetch("/__cv/save", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ markdown }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to save CV markdown.");
+      }
+
+      localStorage.setItem(STORAGE_KEY, markdown);
+      toast.success("CV markdown saved to defaultCv.md", {
+        duration: 5000,
+      });
+    } catch {
+      toast.error("Failed to save CV markdown to file.", {
+        duration: 6000,
+      });
+    } finally {
+      setIsSaving(false);
+    }
+  }, [canEdit, markdown]);
+
+  useEffect(() => {
+    if (!canEdit) {
+      return;
+    }
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.altKey && event.key.toLowerCase() === "s") {
+        event.preventDefault();
+        if (!isSaving) {
+          void handleSaveToFile();
+        }
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [canEdit, handleSaveToFile, isSaving]);
+
   return (
     <div id="cv-print-root" className="min-h-screen bg-gray-50 dark:bg-gray-950 flex flex-col">
       <Toaster position="top-center" richColors />
@@ -158,9 +135,11 @@ export default function CV() {
         </h2>
         <CVToolbar
           canEdit={canEdit}
+          isSaving={isSaving}
           mode={mode}
           onModeChange={setMode}
           onDownloadPDF={handleDownloadPDF}
+          onSave={handleSaveToFile}
           markdown={markdown}
         />
       </div>
