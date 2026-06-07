@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -394,4 +395,30 @@ img {
 .no-drag {
   -webkit-user-drag: none;
   user-drag: none;
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  #cv-print-area,
+  #cv-print-area * {
+    visibility: visible;
+  }
+
+  #cv-print-area {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    padding: 12mm 16mm;
+    box-shadow: none;
+    background: white;
+    overflow: visible;
+  }
+
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
 }

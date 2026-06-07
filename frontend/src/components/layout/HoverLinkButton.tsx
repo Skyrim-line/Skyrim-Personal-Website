@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 interface HoverLinkButtonProps {
   to: string;
@@ -6,12 +6,17 @@ interface HoverLinkButtonProps {
 }
 
 export const HoverLinkButton = ({ to, children }: HoverLinkButtonProps) => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (to.startsWith("#")) {
       e.preventDefault();
-      const element = document.getElementById(to.slice(1));
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
+      const sectionId = to.slice(1);
+      if (location.pathname !== "/") {
+        navigate("/", { state: { scrollTo: sectionId } });
+      } else {
+        document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
       }
     }
   };
