@@ -20,6 +20,7 @@ export default function Navbar() {
   const location = useLocation();
   const navigate = useNavigate();
   const isCVPage = location.pathname === "/cv";
+  const isPeePage = location.pathname === "/pee";
   const [scrolled, setScrolled] = useState(false);
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
@@ -85,6 +86,13 @@ export default function Navbar() {
           }`}>
           CV
         </Link>
+        <Link
+          to="/pee"
+          className={`inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] text-primary underline-offset-4 hover:underline h-9 px-4 py-2 text-lg transition-transform duration-300 ease-in-out hover:scale-110 ${
+            isPeePage ? "underline text-indigo-600 dark:text-indigo-400" : ""
+          }`}>
+          Pee
+        </Link>
       </nav>
 
       <div className="flex items-center gap-3">
@@ -144,6 +152,14 @@ export default function Navbar() {
                 }`}
                 onClick={() => navigate("/cv")}>
                 CV
+              </Button>
+              <Button
+                variant="ghost"
+                className={`w-full cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 ${
+                  isPeePage ? "text-indigo-600 dark:text-indigo-400 font-semibold" : ""
+                }`}
+                onClick={() => navigate("/pee")}>
+                Pee
               </Button>
             </div>
           </SheetContent>
