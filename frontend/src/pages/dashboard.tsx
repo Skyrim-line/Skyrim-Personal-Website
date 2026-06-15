@@ -2,23 +2,13 @@ import Navbar from "@/components/layout/Header";
 import Skyrim from "../assets/optimized/hero-1280.jpg";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { motion } from "framer-motion";
 import PhotoGallery from "../components/gallery/PhotoGallery";
 import ProjectsSection from "./ProjectsSection";
 import { About } from "./About";
 import ContactMe from "./ContactMe";
 import Footer from "@/components/layout/Footer";
 import HeroCanvas from "@/components/hero/HeroCanvas";
-import HeroImage3D from "@/components/hero/HeroImage3D";
-
-const wordVariants = {
-  hidden: { opacity: 0, y: 16 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: 0.4 + i * 0.12, duration: 0.5, ease: "easeOut" },
-  }),
-};
+import HeroText3D from "@/components/hero/HeroText3D";
 
 export default function Home() {
   const [isVisible, setIsVisible] = useState(false);
@@ -61,35 +51,7 @@ export default function Home() {
             <HeroCanvas />
 
             <div className="relative z-10 w-full lg:w-1/2 space-y-6 mb-8 lg:mb-0">
-              <div className="text-3xl sm:text-4xl md:text-5xl font-bold overflow-hidden">
-                <div className="flex flex-wrap justify-center lg:justify-start gap-x-3">
-                  {["Hi", "There!"].map((word, i) => (
-                    <motion.span
-                      key={word}
-                      custom={i}
-                      initial="hidden"
-                      animate={isVisible ? "visible" : "hidden"}
-                      variants={wordVariants}
-                    >
-                      {word}
-                    </motion.span>
-                  ))}
-                </div>
-                <div className="flex flex-wrap justify-center lg:justify-start gap-x-3 mt-2">
-                  {["Welcome", "to", "my", "world"].map((word, i) => (
-                    <motion.span
-                      key={word}
-                      custom={i + 2}
-                      initial="hidden"
-                      animate={isVisible ? "visible" : "hidden"}
-                      variants={wordVariants}
-                      className="text-indigo-600 dark:text-indigo-400"
-                    >
-                      {word}
-                    </motion.span>
-                  ))}
-                </div>
-              </div>
+              <HeroText3D />
 
               <p className="text-lg md:text-xl leading-relaxed text-gray-600 dark:text-gray-300 max-w-2xl text-center lg:text-left">
                 My name is Skyrim Wu, a software engineer with a passion for
@@ -123,18 +85,25 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right image area — Three.js 3D tilt card */}
-            <div className="relative z-10 w-full flex justify-center">
-              <div className="relative w-full max-w-[600px] lg:max-w-full">
-                {/* Indigo glow halo */}
-                <div className="absolute inset-0 rounded-2xl transform rotate-3 scale-105 opacity-30 blur-sm" />
-                {/* 3D image canvas — aspect ratio 16:9 matches the source image */}
-                <div
-                  className="relative w-full"
-                  style={{ aspectRatio: "16/9" }}
-                >
-                  <HeroImage3D src={Skyrim} alt="Skyrim Wu hero photo" />
-                </div>
+            {/* Right image area */}
+            <div className="w-full flex justify-center">
+              <div className="relative z-10 w-full max-w-[600px] lg:max-w-full">
+                <div className="absolute inset-0 bg-indigo-200 dark:bg-indigo-900 rounded-2xl transform rotate-3 scale-105 opacity-30"></div>
+                <img
+                  src={Skyrim}
+                  alt="Skyrim"
+                  loading="eager"
+                  decoding="async"
+                  fetchPriority="high"
+                  className="relative rounded-xl shadow-xl w-full h-auto object-cover max-h-[600px]"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  width={1280}
+                  height={720}
+                  style={{
+                    contentVisibility: "auto",
+                    containIntrinsicSize: "800px 600px",
+                  }}
+                />
               </div>
             </div>
           </div>
