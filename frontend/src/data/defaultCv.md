@@ -1,9 +1,9 @@
 # Simin Wu
 
-**Software Engineer · Full Stack Developer**
-
-contact@skyrimwu.me · GitHub: Skyrim-Wu · Sydney
-
+**Software Engineer · Full Stack Engineer**
+- Portfolio: [skyrimwu.me](https://www.skyrimwu.me/)
+- GitHub: [github.com/Skyrim-Wu](https://github.com/Skyrim-Wu)
+- Location: Sydney
 ---
 
 ## Summary
@@ -66,3 +66,4 @@ Commercial edtech web platform for a Hong Kong-based educational organisation, c
 
 - GitHub: [github.com/Skyrim-Wu](https://github.com/Skyrim-Wu)
 - Email: contact@skyrimwu.me
+- Portfolio: [skyrimwu.me](https://www.skyrimwu.me/)
