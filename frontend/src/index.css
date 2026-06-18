@@ -408,13 +408,14 @@ img {
   }
 
   #cv-print-area {
-    position: fixed;
-    inset: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
+    max-width: none;
     padding: 12mm 16mm;
     box-shadow: none;
     background: white;
-    overflow: visible;
   }
 
   @page {

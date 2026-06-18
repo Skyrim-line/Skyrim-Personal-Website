@@ -7,6 +7,8 @@ import ProjectsSection from "./ProjectsSection";
 import { About } from "./About";
 import ContactMe from "./ContactMe";
 import Footer from "@/components/layout/Footer";
+import HeroCanvas from "@/components/hero/HeroCanvas";
+import HeroText3D from "@/components/hero/HeroText3D";
 
 export default function Home() {
   const [isVisible, setIsVisible] = useState(false);
@@ -34,24 +36,22 @@ export default function Home() {
       <Navbar />
       <main
         id="hero"
-        className="pt-[150px] pb-0 px-4 sm:px-8 lg:px-14 w-full xl:w-[90%] mx-auto">
+        className="pt-[150px] pb-0 px-4 sm:px-8 lg:px-14 w-full xl:w-[90%] mx-auto"
+      >
         {/* Hero & Gallery Section */}
         <section className="flex flex-col justify-center">
           <div
-            className={`flex flex-col mb-4 lg:flex-row items-center justify-between gap-8 md:gap-12 ${
+            className={`relative flex flex-col mb-4 lg:flex-row items-center justify-between gap-8 md:gap-12 rounded-2xl ${
               isVisible
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 translate-y-8"
-            } transition-transform duration-700`}>
-            <div className="w-full lg:w-1/2 space-y-6 mb-8 lg:mb-0">
-              <div className="text-3xl sm:text-4xl md:text-5xl font-bold">
-                <span className="block text-center lg:text-left">
-                  Hi There!
-                </span>
-                <span className="block mt-2 text-indigo-600 dark:text-indigo-400 text-center lg:text-left">
-                  Welcome to my world
-                </span>
-              </div>
+            } transition-transform duration-700`}
+          >
+            {/* Three.js particle background */}
+            <HeroCanvas />
+
+            <div className="relative z-10 w-full lg:w-1/2 space-y-6 mb-8 lg:mb-0">
+              <HeroText3D />
 
               <p className="text-lg md:text-xl leading-relaxed text-gray-600 dark:text-gray-300 max-w-2xl text-center lg:text-left">
                 My name is Skyrim Wu, a software engineer with a passion for
@@ -67,7 +67,8 @@ export default function Home() {
                     document
                       .getElementById("projects")
                       ?.scrollIntoView({ behavior: "smooth" });
-                  }}>
+                  }}
+                >
                   View Projects
                 </button>
                 <button
@@ -77,7 +78,8 @@ export default function Home() {
                     document
                       .getElementById("contact")
                       ?.scrollIntoView({ behavior: "smooth" });
-                  }}>
+                  }}
+                >
                   Contact Me
                 </button>
               </div>
