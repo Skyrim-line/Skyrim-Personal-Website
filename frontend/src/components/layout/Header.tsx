@@ -3,8 +3,10 @@ import { Button } from "@/components/ui/button";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
+import type { Session } from "@supabase/supabase-js";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useTheme } from "@/components/theme/themeProvider";
+import { supabase } from "@/lib/supabase";
 
 function getSystemTheme() {
   if (
@@ -23,10 +25,41 @@ export default function Navbar() {
   const isPeePage = location.pathname === "/pee";
   const [scrolled, setScrolled] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [session, setSession] = useState<Session | null>(null);
   const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!supabase) {
+      return;
+    }
+
+    let isMounted = true;
+
+    const syncSession = async () => {
+      const { data } = await supabase.auth.getSession();
+      if (isMounted) {
+        setSession(data.session);
+      }
+    };
+
+    void syncSession();
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, nextSession) => {
+      if (isMounted) {
+        setSession(nextSession);
+      }
+    });
+
+    return () => {
+      isMounted = false;
+      subscription.unsubscribe();
+    };
   }, []);
 
   useEffect(() => {
@@ -96,6 +129,15 @@ export default function Navbar() {
       </nav>
 
       <div className="flex items-center gap-3">
+        {!session && (
+          <Button
+            asChild
+            variant="ghost"
+            className="hidden md:inline-flex h-9 px-4 py-2 text-lg transition-transform duration-300 ease-in-out hover:scale-110">
+            <Link to="/admin/login">Login</Link>
+          </Button>
+        )}
+
         {mounted && (
           <Button
             variant="ghost"
@@ -161,6 +203,14 @@ export default function Navbar() {
                 onClick={() => navigate("/pee")}>
                 Pee
               </Button>
+              {!session && (
+                <Button
+                  variant="ghost"
+                  className="w-full cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800"
+                  onClick={() => navigate("/admin/login")}>
+                  Login
+                </Button>
+              )}
             </div>
           </SheetContent>
         </Sheet>
