@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useLayoutEffect, useState } from "react";
 
 type Theme = "dark" | "light" | "system";
 
@@ -30,24 +30,39 @@ export function ThemeProvider({
     () => (localStorage.getItem(storageKey) as Theme) || defaultTheme
   );
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const root = window.document.documentElement;
+
     const applyTheme = (newTheme: Theme) => {
-      requestAnimationFrame(() => {
-        root.classList.remove("light", "dark");
-        if (newTheme === "system") {
-          const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
-            .matches
+      root.classList.remove("light", "dark");
+      const resolvedTheme =
+        newTheme === "system"
+          ? window.matchMedia("(prefers-color-scheme: dark)").matches
             ? "dark"
-            : "light";
-          root.classList.add(systemTheme);
-        } else {
-          root.classList.add(newTheme);
-        }
-      });
+            : "light"
+          : newTheme;
+      root.classList.add(resolvedTheme);
+
+      const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+      if (themeColorMeta) {
+        themeColorMeta.setAttribute(
+          "content",
+          resolvedTheme === "dark" ? "#111827" : "#ffffff",
+        );
+      }
     };
 
     applyTheme(theme);
+
+    if (theme !== "system") {
+      return;
+    }
+
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const handleSystemThemeChange = () => applyTheme("system");
+    mediaQuery.addEventListener("change", handleSystemThemeChange);
+
+    return () => mediaQuery.removeEventListener("change", handleSystemThemeChange);
   }, [theme]);
 
   const value = {

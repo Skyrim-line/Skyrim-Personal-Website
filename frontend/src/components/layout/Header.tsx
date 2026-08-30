@@ -7,6 +7,7 @@ import type { Session } from "@supabase/supabase-js";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useTheme } from "@/components/theme/themeProvider";
 import { supabase } from "@/lib/supabase";
+import { cn } from "@/lib/utils";
 import skyrimLogoDark from "@/assets/skyrim-logo/SKYRIM-WHITE资源 2@4x.png";
 import skyrimLogoLight from "@/assets/skyrim-logo/SKYRIM-WHITE资源 1@4x.png";
 
@@ -95,12 +96,18 @@ export default function Navbar() {
     setTheme(currentTheme === "dark" ? "light" : "dark");
   };
 
+  const isDark = currentTheme === "dark";
+
   return (
     <header
-      className={`fixed top-0 z-50 w-full flex items-center justify-between px-4 sm:px-6 py-3 transition-all duration-300 will-change-transform ${scrolled
-          ? "bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm border-b shadow-sm"
-          : "bg-transparent"
-        }`}>
+      className={cn(
+        "fixed top-0 z-50 w-full flex items-center justify-between px-4 sm:px-6 py-3 pt-[calc(0.75rem+env(safe-area-inset-top,0px))] transition-all duration-300 will-change-transform",
+        scrolled
+          ? isDark
+            ? "bg-gray-900/95 backdrop-blur-sm border-b border-gray-800 shadow-sm"
+            : "bg-white/95 backdrop-blur-sm border-b shadow-sm"
+          : "bg-transparent",
+      )}>
       <h1 className="cursor-pointer">
         <Link
           to="/"
@@ -164,7 +171,12 @@ export default function Navbar() {
               <Menu className="h-6 w-6" />
             </Button>
           </SheetTrigger>
-          <SheetContent side="top" className="w-full">
+          <SheetContent
+            side="top"
+            className={cn(
+              "w-full",
+              isDark ? "bg-gray-900 text-white" : "bg-white",
+            )}>
             <div className="mt-8 flex flex-col gap-3 py-3 text-lg justify-center items-center">
               <Button
                 variant="ghost"
