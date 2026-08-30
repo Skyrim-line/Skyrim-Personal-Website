@@ -2,24 +2,15 @@ import { HoverLinkButton } from "./HoverLinkButton";
 import { Button } from "@/components/ui/button";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, Moon, Sun } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import type { Session } from "@supabase/supabase-js";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useTheme } from "@/components/theme/themeProvider";
 import { supabase } from "@/lib/supabase";
+import { applyDocumentTheme } from "@/lib/theme";
 import { cn } from "@/lib/utils";
 import skyrimLogoDark from "@/assets/skyrim-logo/SKYRIM-WHITE资源 2@4x.png";
 import skyrimLogoLight from "@/assets/skyrim-logo/SKYRIM-WHITE资源 1@4x.png";
-
-function getSystemTheme() {
-  if (
-    window.matchMedia &&
-    window.matchMedia("(prefers-color-scheme: dark)").matches
-  ) {
-    return "dark";
-  }
-  return "light";
-}
 
 export default function Navbar() {
   const location = useLocation();
@@ -29,7 +20,11 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [session, setSession] = useState<Session | null>(null);
-  const { theme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
+  const isDark = resolvedTheme === "dark";
+  const headerSurfaceClass = isDark
+    ? "bg-gray-900/95 backdrop-blur-sm border-b border-gray-800 shadow-sm"
+    : "bg-white/95 backdrop-blur-sm border-b shadow-sm";
 
   useEffect(() => {
     setMounted(true);
@@ -67,14 +62,17 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const isScrolled = window.scrollY > 80;
-      if (isScrolled !== scrolled) {
-        setScrolled(isScrolled);
-      }
+      setScrolled(window.scrollY > 80);
     };
-    window.addEventListener("scroll", handleScroll);
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [scrolled]);
+  }, []);
+
+  useLayoutEffect(() => {
+    applyDocumentTheme(resolvedTheme, { scrolled });
+  }, [resolvedTheme, scrolled]);
 
   const scrollToSection = (id: string) => {
     if (location.pathname !== "/") {
@@ -84,36 +82,29 @@ export default function Navbar() {
     }
   };
 
-  // 计算当前主题
-  let currentTheme: "dark" | "light";
-  if (theme === "system") {
-    currentTheme = getSystemTheme();
-  } else {
-    currentTheme = theme as "dark" | "light";
-  }
-
   const toggleTheme = () => {
-    setTheme(currentTheme === "dark" ? "light" : "dark");
+    setTheme(isDark ? "light" : "dark");
   };
-
-  const isDark = currentTheme === "dark";
 
   return (
     <header
       className={cn(
-        "fixed top-0 z-50 w-full flex items-center justify-between px-4 sm:px-6 py-3 pt-[calc(0.75rem+env(safe-area-inset-top,0px))] transition-all duration-300 will-change-transform",
-        scrolled
-          ? isDark
-            ? "bg-gray-900/95 backdrop-blur-sm border-b border-gray-800 shadow-sm"
-            : "bg-white/95 backdrop-blur-sm border-b shadow-sm"
-          : "bg-transparent",
+        "fixed top-0 z-50 w-full relative flex items-center justify-between px-4 sm:px-6 py-3 pt-[calc(0.75rem+env(safe-area-inset-top,0px))]",
+        scrolled ? headerSurfaceClass : "bg-transparent",
       )}>
+      <div
+        aria-hidden="true"
+        className={cn(
+          "pointer-events-none absolute inset-x-0 bottom-full h-[env(safe-area-inset-top,0px)]",
+          scrolled && headerSurfaceClass,
+        )}
+      />
       <h1 className="cursor-pointer">
         <Link
           to="/"
           className="inline-block transition-opacity hover:opacity-80">
           <img
-            src={currentTheme === "dark" ? skyrimLogoDark : skyrimLogoLight}
+            src={isDark ? skyrimLogoDark : skyrimLogoLight}
             alt="Skyrim Wu"
             className="h-7 sm:h-9 w-auto"
           />
@@ -154,7 +145,7 @@ export default function Navbar() {
             onClick={toggleTheme}
             className="rounded-full p-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800"
             aria-label="Toggle theme">
-            {currentTheme === "dark" ? (
+            {isDark ? (
               <Sun className="!h-5 !w-5" />
             ) : (
               <Moon className="!h-5 !w-5" />
