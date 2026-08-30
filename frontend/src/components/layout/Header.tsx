@@ -7,6 +7,8 @@ import type { Session } from "@supabase/supabase-js";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useTheme } from "@/components/theme/themeProvider";
 import { supabase } from "@/lib/supabase";
+import skyrimLogoDark from "@/assets/skyrim-logo/SKYRIM-WHITE资源 2@4x.png";
+import skyrimLogoLight from "@/assets/skyrim-logo/SKYRIM-WHITE资源 1@4x.png";
 
 function getSystemTheme() {
   if (
@@ -95,16 +97,19 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 z-50 w-full flex items-center justify-between px-4 sm:px-6 py-3 transition-all duration-300 will-change-transform ${
-        scrolled
+      className={`fixed top-0 z-50 w-full flex items-center justify-between px-4 sm:px-6 py-3 transition-all duration-300 will-change-transform ${scrolled
           ? "bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm border-b shadow-sm"
           : "bg-transparent"
-      }`}>
-      <h1 className="text-2xl sm:text-3xl font-bold cursor-pointer whitespace-nowrap">
+        }`}>
+      <h1 className="cursor-pointer">
         <Link
           to="/"
-          className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-          Skyrim Wu
+          className="inline-block transition-opacity hover:opacity-80">
+          <img
+            src={currentTheme === "dark" ? skyrimLogoDark : skyrimLogoLight}
+            alt="Skyrim Wu"
+            className="h-7 sm:h-9 w-auto"
+          />
         </Link>
       </h1>
       <nav className="hidden md:flex space-x-6">
@@ -114,16 +119,14 @@ export default function Navbar() {
         <HoverLinkButton to="#contact">Contact</HoverLinkButton>
         <Link
           to="/cv"
-          className={`inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] text-primary underline-offset-4 hover:underline h-9 px-4 py-2 text-lg transition-transform duration-300 ease-in-out hover:scale-110 ${
-            isCVPage ? "underline text-indigo-600 dark:text-indigo-400" : ""
-          }`}>
+          className={`inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] text-primary underline-offset-4 hover:underline h-9 px-4 py-2 text-lg transition-transform duration-300 ease-in-out hover:scale-110 ${isCVPage ? "underline text-indigo-600 dark:text-indigo-400" : ""
+            }`}>
           CV
         </Link>
         <Link
           to="/pee"
-          className={`inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] text-primary underline-offset-4 hover:underline h-9 px-4 py-2 text-lg transition-transform duration-300 ease-in-out hover:scale-110 ${
-            isPeePage ? "underline text-indigo-600 dark:text-indigo-400" : ""
-          }`}>
+          className={`inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] text-primary underline-offset-4 hover:underline h-9 px-4 py-2 text-lg transition-transform duration-300 ease-in-out hover:scale-110 ${isPeePage ? "underline text-indigo-600 dark:text-indigo-400" : ""
+            }`}>
           Pee
         </Link>
       </nav>
@@ -189,17 +192,15 @@ export default function Navbar() {
               </Button>
               <Button
                 variant="ghost"
-                className={`w-full cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 ${
-                  isCVPage ? "text-indigo-600 dark:text-indigo-400 font-semibold" : ""
-                }`}
+                className={`w-full cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 ${isCVPage ? "text-indigo-600 dark:text-indigo-400 font-semibold" : ""
+                  }`}
                 onClick={() => navigate("/cv")}>
                 CV
               </Button>
               <Button
                 variant="ghost"
-                className={`w-full cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 ${
-                  isPeePage ? "text-indigo-600 dark:text-indigo-400 font-semibold" : ""
-                }`}
+                className={`w-full cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 ${isPeePage ? "text-indigo-600 dark:text-indigo-400 font-semibold" : ""
+                  }`}
                 onClick={() => navigate("/pee")}>
                 Pee
               </Button>
