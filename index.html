@@ -9,7 +9,7 @@
       href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="color-scheme" content="light dark" />
+    <meta name="color-scheme" content="light" />
     <meta name="theme-color" content="#ffffff" />
     <script>
       (function () {
@@ -21,7 +21,10 @@
               window.matchMedia("(prefers-color-scheme: dark)").matches);
           document.documentElement.classList.toggle("dark", isDark);
           document.documentElement.style.colorScheme = isDark ? "dark" : "light";
-          document.body.style.backgroundColor = isDark ? "#030712" : "#ffffff";
+          var colorScheme = document.querySelector('meta[name="color-scheme"]');
+          if (colorScheme) {
+            colorScheme.content = isDark ? "dark" : "light";
+          }
           var themeColor = document.querySelector('meta[name="theme-color"]');
           if (themeColor) {
             themeColor.remove();
@@ -34,8 +37,8 @@
       })();
     </script>
     <title>Skyrim Wu</title>
-    <script type="module" crossorigin src="./assets/index-rbfE3BAs.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-ERF4cTtz.css">
+    <script type="module" crossorigin src="./assets/index-D2RDhKjh.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-BArs5vUJ.css">
   </head>
   <body>
     <div id="root"></div>
