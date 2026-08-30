@@ -20,16 +20,22 @@
             (theme === "system" &&
               window.matchMedia("(prefers-color-scheme: dark)").matches);
           document.documentElement.classList.toggle("dark", isDark);
+          document.documentElement.style.colorScheme = isDark ? "dark" : "light";
+          document.body.style.backgroundColor = isDark ? "#030712" : "#ffffff";
           var themeColor = document.querySelector('meta[name="theme-color"]');
           if (themeColor) {
-            themeColor.setAttribute("content", isDark ? "#111827" : "#ffffff");
+            themeColor.remove();
           }
+          themeColor = document.createElement("meta");
+          themeColor.name = "theme-color";
+          themeColor.content = isDark ? "#030712" : "#ffffff";
+          document.head.appendChild(themeColor);
         } catch (e) {}
       })();
     </script>
     <title>Skyrim Wu</title>
-    <script type="module" crossorigin src="./assets/index-Dx6NkclT.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-h4LkG59X.css">
+    <script type="module" crossorigin src="./assets/index-rbfE3BAs.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-ERF4cTtz.css">
   </head>
   <body>
     <div id="root"></div>
