@@ -170,6 +170,13 @@
   * {
     @apply border-border;
   }
+
+  html,
+  body,
+  #root {
+    background-color: var(--background);
+  }
+
   body {
     @apply bg-background text-foreground;
   }

@@ -32,18 +32,35 @@ export function setThemeColor(color: string) {
 
 export function applyDocumentTheme(
   resolvedTheme: ResolvedTheme,
-  options?: { scrolled?: boolean },
+  options?: { scrolled?: boolean; updateThemeColor?: boolean },
 ) {
   const root = document.documentElement;
   root.classList.remove("light", "dark");
   root.classList.add(resolvedTheme);
   root.style.colorScheme = resolvedTheme;
 
-  const colors = THEME_COLORS[resolvedTheme];
-  const themeColor = options?.scrolled ? colors.header : colors.page;
-  setThemeColor(themeColor);
+  // Recent iOS Safari versions use the html/body background for the areas
+  // around the viewport instead of reliably re-reading theme-color. Resolve
+  // the existing CSS variable so this does not introduce a second background
+  // color or override the site's current light/dark palette.
+  const pageBackground = getComputedStyle(root)
+    .getPropertyValue("--background")
+    .trim();
+  if (pageBackground) {
+    root.style.backgroundColor = pageBackground;
+    document.body.style.backgroundColor = pageBackground;
+  }
 
-  document.body.style.backgroundColor = colors.page;
+  const colorSchemeMeta = document.querySelector('meta[name="color-scheme"]');
+  if (colorSchemeMeta) {
+    colorSchemeMeta.setAttribute("content", resolvedTheme);
+  }
+
+  const colors = THEME_COLORS[resolvedTheme];
+  if (options?.updateThemeColor !== false) {
+    const themeColor = options?.scrolled ? colors.header : colors.page;
+    setThemeColor(themeColor);
+  }
 }
 
 export function getThemeColor(

@@ -39,7 +39,9 @@ export function ThemeProvider({
   const resolvedTheme = resolveTheme(theme);
 
   useLayoutEffect(() => {
-    applyDocumentTheme(resolvedTheme);
+    // Navbar owns the theme-color meta tag because it also knows whether the
+    // page is scrolled and therefore which color the iOS safe-area should use.
+    applyDocumentTheme(resolvedTheme, { updateThemeColor: false });
 
     if (theme !== "system") {
       return;
@@ -47,7 +49,7 @@ export function ThemeProvider({
 
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
     const handleSystemThemeChange = () => {
-      applyDocumentTheme(resolveTheme("system"));
+      applyDocumentTheme(resolveTheme("system"), { updateThemeColor: false });
     };
     mediaQuery.addEventListener("change", handleSystemThemeChange);
 

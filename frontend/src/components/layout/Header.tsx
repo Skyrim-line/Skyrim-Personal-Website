@@ -22,9 +22,13 @@ export default function Navbar() {
   const [session, setSession] = useState<Session | null>(null);
   const { resolvedTheme, setTheme } = useTheme();
   const isDark = resolvedTheme === "dark";
-  const headerSurfaceClass = isDark
-    ? "bg-gray-900/95 backdrop-blur-sm border-b border-gray-800 shadow-sm"
-    : "bg-white/95 backdrop-blur-sm border-b shadow-sm";
+  const headerBgClass = isDark
+    ? "bg-gray-900/95 backdrop-blur-sm"
+    : "bg-white/95 backdrop-blur-sm";
+  const headerSurfaceClass = cn(
+    headerBgClass,
+    isDark ? "border-b border-gray-800 shadow-sm" : "border-b shadow-sm",
+  );
 
   useEffect(() => {
     setMounted(true);
@@ -87,18 +91,19 @@ export default function Navbar() {
   };
 
   return (
-    <header
-      className={cn(
-        "fixed top-0 z-50 w-full relative flex items-center justify-between px-4 sm:px-6 py-3 pt-[calc(0.75rem+env(safe-area-inset-top,0px))]",
-        scrolled ? headerSurfaceClass : "bg-transparent",
-      )}>
+    <>
       <div
         aria-hidden="true"
         className={cn(
-          "pointer-events-none absolute inset-x-0 bottom-full h-[env(safe-area-inset-top,0px)]",
-          scrolled && headerSurfaceClass,
+          "pointer-events-none fixed inset-x-0 top-0 z-50 h-[env(safe-area-inset-top,0px)]",
+          scrolled ? headerBgClass : "bg-background",
         )}
       />
+      <header
+        className={cn(
+          "fixed top-0 z-50 w-full flex items-center justify-between px-4 sm:px-6 py-3 pt-[calc(0.75rem+env(safe-area-inset-top,0px))]",
+          scrolled ? headerSurfaceClass : "bg-transparent",
+        )}>
       <h1 className="cursor-pointer">
         <Link
           to="/"
@@ -220,5 +225,10 @@ export default function Navbar() {
         </Sheet>
       </div>
     </header>
+      <div
+        aria-hidden="true"
+        className="pointer-events-none fixed inset-x-0 bottom-0 z-50 h-[env(safe-area-inset-bottom,0px)] bg-background"
+      />
+    </>
   );
 }
